@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxFactory": "TSCircuit",
+    "jsxFragmentFactory": "TSCircuit.Fragment",
+    "jsxImportSource": "lib",
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": false,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": "./src"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "tests/basic.test.tsx"],
+  "exclude": ["node_modules"]
+}
