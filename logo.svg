@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="66.529472mm"
+   height="66.905983mm"
+   viewBox="0 0 66.529472 66.905983"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo.png"
+   inkscape:export-xdpi="151.85489"
+   inkscape:export-ydpi="151.85489"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.4480019"
+     inkscape:cx="125.72499"
+     inkscape:cy="160.67276"
+     inkscape:window-width="1532"
+     inkscape:window-height="971"
+     inkscape:window-x="1024"
+     inkscape:window-y="445"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-43.102856,-89.305733)">
+    <rect
+       style="fill:#3178c6;fill-opacity:1;stroke-width:0.271937"
+       id="rect111"
+       width="66.529472"
+       height="66.905983"
+       x="43.102856"
+       y="89.305733" />
+    <text
+       xml:space="preserve"
+       style="font-size:18.6874px;fill:#3178c6;fill-opacity:1;stroke-width:1.55727"
+       x="55.120007"
+       y="149.35179"
+       id="text7624"><tspan
+         sodipodi:role="line"
+         id="tspan7622"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6874px;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;stroke-width:1.55727"
+         x="55.120007"
+         y="149.35179">TSCi</tspan></text>
+    <g
+       id="g10105"
+       transform="translate(-0.13268375,2.4542003)">
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         id="rect9958"
+         width="18.686621"
+         height="23.716669"
+         x="67.170448"
+         y="99.142899" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect9960"
+         width="5.4941235"
+         height="2.4327574"
+         x="58.55814"
+         y="99.201233" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect9960-9"
+         width="5.4941235"
+         height="2.4327574"
+         x="58.55814"
+         y="109.78485" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect9960-2"
+         width="5.4941235"
+         height="2.4327574"
+         x="58.558144"
+         y="120.36848" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect9960-26"
+         width="5.4941235"
+         height="2.4327574"
+         x="88.94828"
+         y="99.201233" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect9960-9-6"
+         width="5.4941235"
+         height="2.4327574"
+         x="88.94828"
+         y="109.78485" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect9960-2-4"
+         width="5.4941235"
+         height="2.4327574"
+         x="88.948288"
+         y="120.36848" />
+      <circle
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.464862"
+         id="path10049"
+         cx="70.635201"
+         cy="102.75861"
+         r="1.2700131" />
+    </g>
+  </g>
+</svg>

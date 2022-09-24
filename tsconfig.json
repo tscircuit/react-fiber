@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
     "jsx": "preserve",
-    "jsxFactory": "TSCircuit",
-    "jsxFragmentFactory": "TSCircuit.Fragment",
-    "jsxImportSource": "lib",
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

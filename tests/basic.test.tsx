@@ -1,9 +1,26 @@
-import TSCircuit from "lib/TSCircuit"
+// import TSCircuit from "lib/TSCircuit"
+import React from "react"
 import test from "ava"
 import { createRoot } from "lib/render"
-import "types/intrinsic-jsx.d"
+// import "types/intrinsic-jsx.d"
 
-test("render resistor", async (t) => {
-  console.log(await createRoot().renderToElements(<resistor />))
-  // t.like(render(<resistor />), { ok: true })
+const HOC = ({ children }) => {
+  return children
+}
+
+test("render higher order component, <resistor /> and <custom />", async (t) => {
+  t.snapshot(
+    await createRoot().renderToElements(
+      <HOC>
+        <resistor />
+        <custom
+          onRender={(groupBuilder) => {
+            groupBuilder.addCapacitor((cb) => {
+              cb.setName("custom cap")
+            })
+          }}
+        />
+      </HOC>
+    )
+  )
 })
