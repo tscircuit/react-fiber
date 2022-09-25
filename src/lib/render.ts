@@ -1,19 +1,22 @@
 import {
   BaseComponentBuilder,
+  ComponentBuilder,
+  createGroupBuilder,
   createResistorBuilder,
   GroupBuilder,
   ProjectBuilder,
+  TraceBuilder,
 } from "@tscircuit/builder"
 import { ReactNode } from "react"
 import ReactReconciler, { Fiber, HostConfig } from "react-reconciler"
+import { getBuilderForType } from "./get-builder-for-type"
 
 export type RootContainer = {}
 
 export type Type = "resistor" | "custom"
 export type Props = any
 export type Container = GroupBuilder
-// TODO replace with ComponentBuilder union when available
-export type Instance = BaseComponentBuilder<any>
+export type Instance = ComponentBuilder | TraceBuilder | GroupBuilder
 export type TextInstance = any
 export type SuspenseInstance = any
 export type HydratableInstance = any
@@ -41,13 +44,26 @@ export const hostConfig: HostConfig<
 > = {
   supportsMutation: true,
   createInstance(type, props, rootContainer, hostContext, internalHandle) {
-    const instance = createResistorBuilder(rootContainer.project_builder)
-
-    if (props.name) {
-      instance.setName(props.name)
+    if (type === "custom") {
+      if (!props.onRender) {
+        throw new Error(`<custom /> must provide an onRender prop`)
+      }
+      const instance = createGroupBuilder(rootContainer.project_builder)
+      props.onRender(instance)
+      return instance
+    } else if (typeof type === "string") {
+      const instance = getBuilderForType(type, rootContainer.project_builder)
+      if (props.name && "setName" in instance) {
+        instance.setName(props.name)
+      }
+      if ("setSourceProperties" in instance) {
+        // TODO remove pcb/schematic specific properties
+        instance.setSourceProperties(props)
+      }
+      return instance
     }
 
-    return instance
+    throw new Error(`Couldn't handle type: "${type}"`)
   },
   getRootHostContext() {
     return {}

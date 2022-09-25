@@ -12,16 +12,16 @@ const HOC = ({ children }) => {
 test("render higher order component, <resistor /> and <custom />", async (t) => {
   const pb = createProjectBuilder()
   const result = await createRoot().render(
-    // <HOC>
-    <resistor />,
-    //   <custom
-    //     onRender={(groupBuilder) => {
-    //       groupBuilder.addCapacitor((cb) => {
-    //         cb.setName("custom cap")
-    //       })
-    //     }}
-    //   />
-    // </HOC>
+    <HOC>
+      <resistor name="R1" />
+      <custom
+        onRender={(groupBuilder) => {
+          groupBuilder.addCapacitor((cb) => {
+            cb.setName("custom cap")
+          })
+        }}
+      />
+    </HOC>,
     pb
   )
   console.log(result)
