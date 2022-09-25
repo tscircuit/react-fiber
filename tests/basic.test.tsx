@@ -2,6 +2,7 @@
 import React from "react"
 import test from "ava"
 import { createRoot } from "lib/render"
+import { createProjectBuilder } from "@tscircuit/builder"
 // import "types/intrinsic-jsx.d"
 
 const HOC = ({ children }) => {
@@ -9,18 +10,20 @@ const HOC = ({ children }) => {
 }
 
 test("render higher order component, <resistor /> and <custom />", async (t) => {
-  t.snapshot(
-    await createRoot().renderToElements(
-      <HOC>
-        <resistor />
-        <custom
-          onRender={(groupBuilder) => {
-            groupBuilder.addCapacitor((cb) => {
-              cb.setName("custom cap")
-            })
-          }}
-        />
-      </HOC>
-    )
+  const pb = createProjectBuilder()
+  const result = await createRoot().render(
+    <HOC>
+      <resistor name="R1" />
+      <custom
+        onRender={(groupBuilder) => {
+          groupBuilder.addCapacitor((cb) => {
+            cb.setName("custom cap")
+          })
+        }}
+      />
+    </HOC>,
+    pb
   )
+  console.log(result)
+  t.pass()
 })
