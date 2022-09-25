@@ -1,6 +1,6 @@
 import { ProjectBuilder } from "@tscircuit/builder"
 import { ReactNode } from "react"
-import ReactReconciler, { HostConfig } from "react-reconciler"
+import ReactReconciler, { Fiber, HostConfig } from "react-reconciler"
 
 export type RootContainer = {}
 
@@ -87,6 +87,46 @@ export const hostConfig: HostConfig<
   clearContainer(container) {
     container.children = []
   },
+  supportsPersistence: false,
+  getPublicInstance: function (instance: any) {
+    throw new Error("Function not implemented.")
+  },
+  preparePortalMount: function (containerInfo: any): void {
+    throw new Error("Function not implemented.")
+  },
+  scheduleTimeout: function (
+    fn: (...args: unknown[]) => unknown,
+    delay?: number | undefined
+  ) {
+    throw new Error("Function not implemented.")
+  },
+  cancelTimeout: function (id: any): void {
+    throw new Error("Function not implemented.")
+  },
+  noTimeout: undefined,
+  isPrimaryRenderer: true,
+  getCurrentEventPriority: function (): number {
+    throw new Error("Function not implemented.")
+  },
+  getInstanceFromNode: function (node: any): Fiber | null | undefined {
+    throw new Error("Function not implemented.")
+  },
+  beforeActiveInstanceBlur: function (): void {
+    throw new Error("Function not implemented.")
+  },
+  afterActiveInstanceBlur: function (): void {
+    throw new Error("Function not implemented.")
+  },
+  prepareScopeUpdate: function (scopeInstance: any, instance: any): void {
+    throw new Error("Function not implemented.")
+  },
+  getInstanceFromScope: function (scopeInstance: any) {
+    throw new Error("Function not implemented.")
+  },
+  detachDeletedInstance: function (node: any): void {
+    throw new Error("Function not implemented.")
+  },
+  supportsHydration: false,
 }
 
 export const createRoot = () => {
@@ -118,7 +158,7 @@ export const createRoot = () => {
         null,
         callback
       )
-      return projectBuilder
+      return projectBuilder.build()
     },
   }
 }
