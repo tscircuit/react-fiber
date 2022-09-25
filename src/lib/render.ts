@@ -59,42 +59,30 @@ export const hostConfig: HostConfig<
     throw new Error("Text is not allowed in TSCircuit React")
   },
   appendInitialChild(parent, child) {
-    // parent.children ??= []
-    // parent.children.push(child)
-    // this.appendChild!(parent, child)
-    throw new Error("not implemented")
+    throw new Error("appendInitialChild not implemented")
   },
   appendChild(parent, child) {
-    // parent.children ??= []
-    // parent.children.push(child)
-    // console.log({ parent, child })
-    // parent.addResistor((rb) => {
-    //   rb.setName(child.type)
-    // })
-    throw new Error("not implemented")
+    throw new Error("appendChild not implemented")
   },
   finalizeInitialChildren(instance, type, props) {
     // NOTE: return true for commitMount
     return false
   },
   appendChildToContainer(container, child) {
-    // container.children ??= []
-    // container.children.push(child)
-    // this.appendChild!(container, child)
-    console.log({ container, child })
     container.appendChild(child)
   },
   prepareUpdate(instance, type, oldProps, newProps) {
     return true
   },
   commitUpdate(instance, updatePayload, type, oldProps, newProps) {
-    instance.assign(updatePayload)
+    throw new Error("commitUpdate not implemented")
+    // instance.assign(updatePayload)
   },
   commitTextUpdate(textInstance, oldText, newText) {
     throw new Error("Text is not allowed in TSCircuit React")
   },
   removeChild(parentInstance, child) {
-    parentInstance.children = parentInstance.children.filter((c) => c !== child)
+    throw new Error("removeChild not implemented")
   },
   prepareForCommit(containerInfo) {
     return null
@@ -104,7 +92,7 @@ export const hostConfig: HostConfig<
     return false
   },
   clearContainer(container) {
-    container.children = []
+    container.reset()
   },
   supportsPersistence: false,
   getPublicInstance: function (instance: any) {

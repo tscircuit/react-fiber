@@ -35,10 +35,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@tscircuit/builder@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@tscircuit/builder/-/builder-0.0.1.tgz#91b8a98318de2bc5755592bdc045f77406c39f03"
-  integrity sha512-pTc+vRYLOlG+4p4L2lWy14Wk+3ovInPnBt3ju7TAcWRbbnT7jTvjLxF0amIupH2jbuArgRLFzx2418msgsCPLw==
+"@tscircuit/builder@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@tscircuit/builder/-/builder-1.0.3.tgz#e00da9fac0d83603e78588286bc3c9a4a54bfd20"
+  integrity sha512-te0OcaFzB016Nw0hkqBenfFTYlrcwUyLaj46ghcpV5X4LcHSrQtiI6kPW4/QIjXvX5qDLDYCbVXHF6PStRWxHQ==
   dependencies:
     parsel-js "^1.0.2"
     rectilinear-router "^1.0.1"
