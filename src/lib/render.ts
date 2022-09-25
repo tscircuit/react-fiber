@@ -1,4 +1,9 @@
-import { ProjectBuilder } from "@tscircuit/builder"
+import {
+  BaseComponentBuilder,
+  createResistorBuilder,
+  GroupBuilder,
+  ProjectBuilder,
+} from "@tscircuit/builder"
 import { ReactNode } from "react"
 import ReactReconciler, { Fiber, HostConfig } from "react-reconciler"
 
@@ -6,8 +11,9 @@ export type RootContainer = {}
 
 export type Type = "resistor" | "custom"
 export type Props = any
-export type Container = any
-export type Instance = any
+export type Container = GroupBuilder
+// TODO replace with ComponentBuilder union when available
+export type Instance = BaseComponentBuilder<any>
 export type TextInstance = any
 export type SuspenseInstance = any
 export type HydratableInstance = any
@@ -35,9 +41,12 @@ export const hostConfig: HostConfig<
 > = {
   supportsMutation: true,
   createInstance(type, props, rootContainer, hostContext, internalHandle) {
-    rootContainer.instances ??= []
-    const instance = { type }
-    rootContainer.instances.push(instance)
+    const instance = createResistorBuilder(rootContainer.project_builder)
+
+    if (props.name) {
+      instance.setName(props.name)
+    }
+
     return instance
   },
   getRootHostContext() {
@@ -50,20 +59,30 @@ export const hostConfig: HostConfig<
     throw new Error("Text is not allowed in TSCircuit React")
   },
   appendInitialChild(parent, child) {
-    parent.children ??= []
-    parent.children.push(child)
+    // parent.children ??= []
+    // parent.children.push(child)
+    // this.appendChild!(parent, child)
+    throw new Error("not implemented")
   },
   appendChild(parent, child) {
-    parent.children ??= []
-    parent.children.push(child)
+    // parent.children ??= []
+    // parent.children.push(child)
+    // console.log({ parent, child })
+    // parent.addResistor((rb) => {
+    //   rb.setName(child.type)
+    // })
+    throw new Error("not implemented")
   },
   finalizeInitialChildren(instance, type, props) {
     // NOTE: return true for commitMount
     return false
   },
   appendChildToContainer(container, child) {
-    container.children ??= []
-    container.children.push(child)
+    // container.children ??= []
+    // container.children.push(child)
+    // this.appendChild!(container, child)
+    console.log({ container, child })
+    container.appendChild(child)
   },
   prepareUpdate(instance, type, oldProps, newProps) {
     return true
@@ -124,7 +143,7 @@ export const hostConfig: HostConfig<
     throw new Error("Function not implemented.")
   },
   detachDeletedInstance: function (node: any): void {
-    throw new Error("Function not implemented.")
+    // throw new Error("Function not implemented.")
   },
   supportsHydration: false,
 }
