@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@tscircuit/builder": "^0.0.1",
-    "react": "^18.2.0"
+    "@types/react-reconciler": "^0.28.0",
+    "react": "^18.2.0",
+    "react-reconciler": "^0.29.0"
   }
 }

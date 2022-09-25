@@ -1,58 +1,124 @@
-import { AnyElement, createProjectBuilder } from "@tscircuit/builder"
-import { RenderTreeRoot, VNode, RenderContext } from "types"
+import { ProjectBuilder } from "@tscircuit/builder"
+import { ReactNode } from "react"
+import ReactReconciler, { HostConfig } from "react-reconciler"
 
-export const createRoot = (): RenderTreeRoot => {
+export type RootContainer = {}
+
+export type Type = "resistor" | "custom"
+export type Props = any
+export type Container = any
+export type Instance = any
+export type TextInstance = any
+export type SuspenseInstance = any
+export type HydratableInstance = any
+export type PublicInstance = any
+export type HostContext = any
+export type UpdatePayload = any
+export type ChildSet = any
+export type TimeoutHandle = any
+export type NoTimeout = any
+
+export const hostConfig: HostConfig<
+  Type,
+  Props,
+  Container,
+  Instance,
+  TextInstance,
+  SuspenseInstance,
+  HydratableInstance,
+  PublicInstance,
+  HostContext,
+  UpdatePayload,
+  ChildSet,
+  TimeoutHandle,
+  NoTimeout
+> = {
+  supportsMutation: true,
+  createInstance(type, props, rootContainer, hostContext, internalHandle) {
+    rootContainer.instances ??= []
+    const instance = { type }
+    rootContainer.instances.push(instance)
+    return instance
+  },
+  getRootHostContext() {
+    return {}
+  },
+  getChildHostContext() {
+    return {}
+  },
+  createTextInstance() {
+    throw new Error("Text is not allowed in TSCircuit React")
+  },
+  appendInitialChild(parent, child) {
+    parent.children ??= []
+    parent.children.push(child)
+  },
+  appendChild(parent, child) {
+    parent.children ??= []
+    parent.children.push(child)
+  },
+  finalizeInitialChildren(instance, type, props) {
+    // NOTE: return true for commitMount
+    return false
+  },
+  appendChildToContainer(container, child) {
+    container.children ??= []
+    container.children.push(child)
+  },
+  prepareUpdate(instance, type, oldProps, newProps) {
+    return true
+  },
+  commitUpdate(instance, updatePayload, type, oldProps, newProps) {
+    instance.assign(updatePayload)
+  },
+  commitTextUpdate(textInstance, oldText, newText) {
+    throw new Error("Text is not allowed in TSCircuit React")
+  },
+  removeChild(parentInstance, child) {
+    parentInstance.children = parentInstance.children.filter((c) => c !== child)
+  },
+  prepareForCommit(containerInfo) {
+    return null
+  },
+  resetAfterCommit(containerInfo) {},
+  shouldSetTextContent(type, props) {
+    return false
+  },
+  clearContainer(container) {
+    container.children = []
+  },
+}
+
+export const createRoot = () => {
   return {
-    renderToElements: async (vnode: VNode) => {
-      const projectBuilder = createProjectBuilder()
-      const context: RenderContext = {
-        projectBuilder,
-        parentGroup: projectBuilder,
+    async render(
+      element: ReactNode,
+      projectBuilder: ProjectBuilder & { _rootContainer: RootContainer },
+      callback: null | (() => void) = null
+    ) {
+      const container = {}
+      const reconciler = ReactReconciler(hostConfig)
+      if (!projectBuilder._rootContainer) {
+        projectBuilder._rootContainer = reconciler.createContainer(
+          projectBuilder,
+          0,
+          null,
+          false,
+          null,
+          "tsci",
+          (error: Error) => {
+            console.error("got recoverable error from reconciler...", error)
+          },
+          null
+        )
       }
-      await renderVNode(context, vnode)
-      return projectBuilder.build()
+      reconciler.updateContainer(
+        element,
+        projectBuilder._rootContainer,
+        null,
+        callback
+      )
+      return projectBuilder
     },
   }
-}
-
-export const renderVNodes = async (
-  context: RenderContext,
-  vnodes: VNode | VNode[] | null
-) => {
-  if (!vnodes) return []
-  if (typeof vnodes === "string") throw new Error("string is not a valid vnode")
-  if (Array.isArray(vnodes)) {
-    for (const vnode of vnodes) {
-      renderVNode(context, vnode)
-    }
-    return
-  } else {
-    renderVNode(context, vnodes)
-    return
-  }
-  throw new Error("couldn't render vnode")
-}
-
-export const renderVNode = async (
-  context: RenderContext,
-  vnode: VNode
-): Promise<void> => {
-  if (vnode.type === "resistor") {
-    context.parentGroup.addResistor((rb) => {
-      if (vnode.props.name) rb.setName(vnode.props.name)
-    })
-    return
-  } else if (vnode.type === "custom") {
-    if (!vnode.props.onRender)
-      throw new Error("<custom /> components must define onRender")
-    await vnode.props.onRender(context.parentGroup)
-    return
-  }
-
-  if (typeof vnode.type === "function") {
-    renderVNodes(context, await vnode.type(vnode.props))
-    return
-  }
-
-  throw new Error("Unknown vnode type: " + vnode.type)
 }
