@@ -6,7 +6,6 @@ Design circuits with TSX.
 
 ```bash
 yarn add tscircuit
-
 ```
 
 ## Usage
