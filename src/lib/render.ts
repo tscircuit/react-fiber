@@ -58,8 +58,12 @@ export const hostConfig: HostConfig<
     } else if (typeof type === "string") {
       const instance = getBuilderForType(type, rootContainer.project_builder)
 
-      const propNames = Object.keys(props)
+      if ("setProps" in instance) {
+        ;(instance as any).setProps(props)
+        return instance
+      }
 
+      const propNames = Object.keys(props)
       for (const propName of propNames) {
         let capPropName = propName.charAt(0).toUpperCase() + propName.slice(1)
 
