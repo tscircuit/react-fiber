@@ -9,13 +9,22 @@ const HOC = ({ children }) => {
   return children
 }
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      custom: any
+      resistor: any
+    }
+  }
+}
+
 test("render higher order component, <resistor /> and <custom />", async (t) => {
   const pb = createProjectBuilder()
   const result = await createRoot().render(
     <HOC>
       <resistor name="R1" />
       <custom
-        onRender={(groupBuilder) => {
+        onAdd={(groupBuilder) => {
           groupBuilder.addCapacitor((cb) => {
             cb.setName("custom cap")
           })

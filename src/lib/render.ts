@@ -9,11 +9,15 @@ import {
 } from "@tscircuit/builder"
 import { ReactNode } from "react"
 import ReactReconciler, { Fiber, HostConfig } from "react-reconciler"
-import { getBuilderForType } from "./get-builder-for-type"
+import {
+  getBuilderForType,
+  builderTypeToInitializer,
+  BuilderType,
+} from "./get-builder-for-type"
 
 export type RootContainer = {}
 
-export type Type = "resistor" | "custom"
+export type Type = BuilderType | "custom"
 export type Props = any
 export type Container = GroupBuilder
 export type Instance = ComponentBuilder | TraceBuilder | GroupBuilder
@@ -45,21 +49,46 @@ export const hostConfig: HostConfig<
   supportsMutation: true,
   createInstance(type, props, rootContainer, hostContext, internalHandle) {
     if (type === "custom") {
-      if (!props.onRender) {
-        throw new Error(`<custom /> must provide an onRender prop`)
+      if (!props.onAdd) {
+        throw new Error(`<custom /> must provide an onAdd prop`)
       }
       const instance = createGroupBuilder(rootContainer.project_builder)
-      props.onRender(instance)
+      props.onAdd(instance)
       return instance
     } else if (typeof type === "string") {
       const instance = getBuilderForType(type, rootContainer.project_builder)
-      if (props.name && "setName" in instance) {
-        instance.setName(props.name)
+
+      const propNames = Object.keys(props)
+
+      for (const propName of propNames) {
+        let capPropName = propName.charAt(0).toUpperCase() + propName.slice(1)
+
+        if (capPropName === "Ftype") {
+          capPropName = "FType"
+        }
+
+        const setter = (instance as any)[`set${capPropName}`]
+        if (setter) {
+          setter.call(instance, props[propName])
+          continue
+        }
       }
-      if ("setSourceProperties" in instance) {
-        // TODO remove pcb/schematic specific properties
-        instance.setSourceProperties(props)
+
+      if ("setPosition" in instance && (props.x || props.y)) {
+        if (props.x === undefined || props.y === undefined) {
+          throw new Error("if defining x, must also define y and vice versa")
+        }
+        ;(instance as any).setPosition(props.x, props.y)
       }
+
+      if ("setSize" in instance && (props.width || props.height)) {
+        if (props.width === undefined || props.height === undefined) {
+          throw new Error(
+            "if defining width, must also define height and vice versa"
+          )
+        }
+      }
+
       return instance
     }
 
@@ -85,6 +114,11 @@ export const hostConfig: HostConfig<
     return false
   },
   appendChildToContainer(container, child) {
+    if (!("appendChild" in container)) {
+      throw new Error(
+        `Container "${container.builder_type}" does not support appending children`
+      )
+    }
     container.appendChild(child)
   },
   prepareUpdate(instance, type, oldProps, newProps) {

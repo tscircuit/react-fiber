@@ -12,6 +12,10 @@ import {
   GroupBuilder,
   ProjectBuilder,
   TraceBuilder,
+  createSMTPadBuilder,
+  createPortBuilder,
+  createPortsBuilder,
+  createFootprintBuilder,
 } from "@tscircuit/builder"
 
 export const builderTypeToInitializer = {
@@ -24,7 +28,13 @@ export const builderTypeToInitializer = {
   powersource: createPowerSourceBuilder,
   group: createGroupBuilder,
   trace: createTraceBuilder,
+  smtpad: createSMTPadBuilder,
+  port: createPortBuilder,
+  ports: createPortsBuilder,
+  footprint: createFootprintBuilder,
 }
+
+export type BuilderType = keyof typeof builderTypeToInitializer
 
 export const getBuilderForType = (
   type: string,
