@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup ./src --dts --sourcemap",
-    "test": "ava"
+    "test": "ava",
+    "yalc": "npm run build && yalc push"
   },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^9.0.2",

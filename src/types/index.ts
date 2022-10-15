@@ -1,4 +1,5 @@
 import { AnyElement, GroupBuilder, ProjectBuilder } from "@tscircuit/builder"
+import "./intrinsic-jsx"
 
 export type RenderTreeRoot = {
   renderToElements: (vnode: VNode) => Promise<AnyElement[]>
