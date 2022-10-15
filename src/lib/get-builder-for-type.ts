@@ -28,6 +28,7 @@ export const builderTypeToInitializer = {
   circle: (Builder as any).createCircleBuilder,
   text: (Builder as any).createTextBuilder,
   image: (Builder as any).createImageBuilder,
+  constrainedlayout: (Builder as any).createConstrainedLayoutBuilder,
 }
 
 export type BuilderType = keyof typeof builderTypeToInitializer
