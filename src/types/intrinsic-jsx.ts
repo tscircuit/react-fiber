@@ -20,6 +20,7 @@ declare global {
       hole: any
       schematicdrawing: any
       box: any
+      constraint: any
       // conflicts w/ svg
       // line: any
     }
