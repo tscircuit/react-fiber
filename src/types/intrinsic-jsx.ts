@@ -18,3 +18,5 @@ declare global {
     }
   }
 }
+
+export default {}
