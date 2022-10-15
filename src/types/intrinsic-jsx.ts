@@ -15,6 +15,13 @@ declare global {
       port: any
       ports: any
       footprint: any
+      component: any
+      platedhole: any
+      hole: any
+      schematicdrawing: any
+      box: any
+      // conflicts w/ svg
+      // line: any
     }
   }
 }
