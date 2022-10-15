@@ -1,2 +1,2 @@
 export { createRoot } from "./lib/render"
-export * from "@tscircuit/builder"
+export * from "./lib/use-rendered-elements"
