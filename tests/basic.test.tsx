@@ -1,4 +1,3 @@
-// import TSCircuit from "lib/TSCircuit"
 import React from "react"
 import test from "ava"
 import { createRoot } from "lib/render"
@@ -7,15 +6,6 @@ import { createProjectBuilder } from "@tscircuit/builder"
 
 const HOC = ({ children }) => {
   return children
-}
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      custom: any
-      resistor: any
-    }
-  }
 }
 
 test("render higher order component, <resistor /> and <custom />", async (t) => {

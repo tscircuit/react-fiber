@@ -117,7 +117,7 @@ export const hostConfig: HostConfig<
     // NOTE: return true for commitMount
     return false
   },
-  appendChildToContainer(container, child) {
+  appendChildToContainer(container: any, child) {
     if (!("appendChild" in container)) {
       throw new Error(
         `Container "${container.builder_type}" does not support appending children`
@@ -194,7 +194,7 @@ export const createRoot = () => {
   return {
     async render(
       element: ReactNode,
-      projectBuilder: ProjectBuilder & { _rootContainer: RootContainer },
+      projectBuilder: ProjectBuilder & { _rootContainer?: RootContainer },
       callback: null | (() => void) = null
     ) {
       const container = {}
