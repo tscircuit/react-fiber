@@ -107,8 +107,10 @@ export const hostConfig: HostConfig<
   createTextInstance() {
     throw new Error("Text is not allowed in TSCircuit React")
   },
-  appendInitialChild(parent, child) {
-    throw new Error("appendInitialChild not implemented")
+  appendInitialChild(parent: any, child) {
+    // throw new Error("appendInitialChild not implemented")
+    // console.log(child.build())
+    parent.appendChild(child)
   },
   appendChild(parent, child) {
     throw new Error("appendChild not implemented")
