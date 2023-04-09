@@ -22,16 +22,20 @@ declare global {
         y: number | string
       }
       ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0]
-      footprint: any
-      component: any
-      platedhole: any
+      footprint: {} // just has children
+      component: {} // just has children
+      platedhole: Parameters<B.PlatedHoleBuilder["setProps"]>[0]
       hole: Partial<Omit<B.PCBHole, "type">>
-      schematicdrawing: any
-      box: any
-      schematicbox: any
-      constraint: any
-      // conflicts w/ svg
-      // line: any
+      schematicdrawing: {} // just has children
+
+      // box can be used for pcb silkscreen too... maybe remove?
+      box: Parameters<B.SchematicBoxBuilder["setProps"]>[0]
+      schematicbox: Parameters<B.SchematicBoxBuilder["setProps"]>[0]
+      constraint: Parameters<B.ConstraintBuilder["setProps"]>[0]
+      contrainedlayout: Parameters<B.ConstrainedLayoutBuilder["setProps"]>[0]
+
+      // "line" conflicts w/ svg
+      sline: Parameters<B.SchematicLineBuilder["setProps"]>[0]
     }
   }
 }
