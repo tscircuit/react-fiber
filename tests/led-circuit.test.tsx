@@ -16,7 +16,7 @@ const Resistor = () => (
 )
 
 const Led = () => (
-  <component x="2mm">
+  <component x="5mm" y="0mm">
     <platedhole x={0} y={0} hole_diameter="1mm" outer_diameter="2mm" />
     <platedhole x="0.2in" y={0} hole_diameter="1mm" outer_diameter="2mm" />
     <box x="1.5mm" y={0} width="2.5mm" height="3mm" />

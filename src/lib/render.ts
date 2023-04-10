@@ -85,6 +85,13 @@ export const hostConfig: HostConfig<
         ;(instance as any).setPosition(props.x, props.y)
       }
 
+      if ("setSchematicCenter" in instance && (props.x || props.y)) {
+        if (props.x === undefined || props.y === undefined) {
+          throw new Error("if defining x, must also define y and vice versa")
+        }
+        ;(instance as any).setSchematicCenter(props.x, props.y)
+      }
+
       if ("setSize" in instance && (props.width || props.height)) {
         if (props.width === undefined || props.height === undefined) {
           throw new Error(

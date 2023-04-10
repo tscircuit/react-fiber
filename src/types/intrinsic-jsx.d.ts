@@ -23,7 +23,9 @@ declare global {
       }
       ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0]
       footprint: {} // just has children
-      component: {} // just has children
+      component: Parameters<
+        B.GenericComponentBuilder["setSourceProperties"]
+      >[0] & { children: any }
       platedhole: Parameters<B.PlatedHoleBuilder["setProps"]>[0]
       hole: Partial<Omit<B.PCBHole, "type">>
       schematicdrawing: {} // just has children
