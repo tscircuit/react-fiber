@@ -92,6 +92,15 @@ export const hostConfig: HostConfig<
         ;(instance as any).setSchematicCenter(props.x, props.y)
       }
 
+      if ("footprint" in instance && (props.pcb_x || props.pcb_y)) {
+        if (props.pcb_x === undefined || props.pcb_y === undefined) {
+          throw new Error(
+            "if defining pcb_x, must also define pcb_y and vice versa"
+          )
+        }
+        ;(instance as any).footprint.setPosition(props.pcb_x, props.pcb_y)
+      }
+
       if ("setSize" in instance && (props.width || props.height)) {
         if (props.width === undefined || props.height === undefined) {
           throw new Error(
