@@ -1,43 +1,102 @@
 import type * as B from "@tscircuit/builder"
 
+type Point = [number, number] | { x: number; y: number }
+
+// TODO remove when we figure out why B.Dimension is not working (coming in as
+// number)
+type Dimension = number | string
+
+type SchematicPosition = {
+  center?: Point
+  x?: Dimension
+  y?: Dimension
+  cx?: Dimension
+  cy?: Dimension
+  sch_x?: Dimension
+  sch_y?: Dimension
+  sch_cx?: Dimension
+  sch_cy?: Dimension
+  sch_center?: Point
+  sch_rotation?: string | number
+  rotation?: string | number
+}
+
+type PCBPosition = {
+  center?: Point
+  pcb_x?: Dimension
+  pcb_y?: Dimension
+  pcb_cx?: Dimension
+  pcb_cy?: Dimension
+  pcb_rotation?: string | number
+}
+
+type Position = SchematicPosition & PCBPosition
+
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      resistor: Parameters<B.ResistorBuilder["setSourceProperties"]>[0]
+      resistor: Parameters<B.ResistorBuilder["setSourceProperties"]>[0] &
+        Position
       custom: any
-      capacitor: Parameters<B.CapacitorBuilder["setSourceProperties"]>[0]
-      inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0]
-      diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0]
-      bug: Parameters<B.BugBuilder["setSourceProperties"]>[0]
-      ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0]
-      powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0]
-      group: Parameters<B.GroupBuilder["setSourceProperties"]>[0]
-      trace: Parameters<B.TraceBuilder["setSourceProperties"]>[0]
-      smtpad: Parameters<B.SMTPadBuilder["setSourceProperties"]>[0]
+      capacitor: Parameters<B.CapacitorBuilder["setSourceProperties"]>[0] &
+        Position
+      inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
+        Position
+      diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0] & Position
+      bug: Parameters<B.BugBuilder["setSourceProperties"]>[0] &
+        Position & {
+          port_arrangement?: {
+            left_size?: number
+            top_sizew?: number
+            right_size?: number
+            bottom_size?: number
+          }
+          port_labels?: {
+            [number]: string
+          }
+        }
+      ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] & Position
+      powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
+        Position
+      group: Parameters<B.GroupBuilder["setSourceProperties"]>[0] &
+        Position & { children?: any }
+      trace: Parameters<B.TraceBuilder["setSourceProperties"]>[0] &
+        PCBPosition & {
+          path?: string[]
+          from?: string
+          to?: string
+        }
+      smtpad: Parameters<B.SMTPadBuilder["setSourceProperties"]>[0] &
+        PCBPosition
       port: {
         name: string
         direction?: string
         dir?: string
         x: number | string
         y: number | string
-      }
-      ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0]
+      } & Position
+      ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0] & Position
       footprint: {} // just has children
       component: Parameters<
         B.GenericComponentBuilder["setSourceProperties"]
-      >[0] & { children: any }
-      platedhole: Parameters<B.PlatedHoleBuilder["setProps"]>[0]
-      hole: Partial<Omit<B.PCBHole, "type">>
+      >[0] & { children: any } & Position
+      platedhole: Parameters<B.PlatedHoleBuilder["setProps"]>[0] &
+        PCBPosition & {
+          hole_diameter?: Dimension
+        }
+      hole: Partial<Omit<B.PCBHole, "type">> & PCBPosition
       schematicdrawing: {} // just has children
 
       // box can be used for pcb silkscreen too... maybe remove?
-      box: Parameters<B.SchematicBoxBuilder["setProps"]>[0]
-      schematicbox: Parameters<B.SchematicBoxBuilder["setProps"]>[0]
+      box: Parameters<B.SchematicBoxBuilder["setProps"]>[0] & Position
+      schematicbox: Parameters<B.SchematicBoxBuilder["setProps"]>[0] &
+        SchematicPosition
       constraint: Parameters<B.ConstraintBuilder["setProps"]>[0]
       contrainedlayout: Parameters<B.ConstrainedLayoutBuilder["setProps"]>[0]
 
       // "line" conflicts w/ svg
-      sline: Parameters<B.SchematicLineBuilder["setProps"]>[0]
+      sline: Parameters<B.SchematicLineBuilder["setProps"]>[0] &
+        SchematicPosition
     }
   }
 }

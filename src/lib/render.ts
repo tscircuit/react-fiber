@@ -14,6 +14,7 @@ import {
   builderTypeToInitializer,
   BuilderType,
 } from "./get-builder-for-type"
+import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from-props"
 
 export type RootContainer = {}
 
@@ -90,6 +91,28 @@ export const hostConfig: HostConfig<
           throw new Error("if defining x, must also define y and vice versa")
         }
         ;(instance as any).setSchematicCenter(props.x, props.y)
+      }
+
+      // collect all the schematic properties together
+      const schematic_properties = getSchematicPropertiesFromProps(props)
+
+      if ("setSchematicProperties" in instance) {
+        ;(instance as any).setSchematicProperties(schematic_properties)
+      }
+
+      if (schematic_properties.schematic_center) {
+        if ("setSchematicCenter" in instance) {
+          ;(instance as any).setSchematicCenter(
+            schematic_properties.schematic_center.x,
+            schematic_properties.schematic_center.y
+          )
+        }
+      }
+
+      if (schematic_properties.rotation) {
+        if ("setSchematicRotation" in instance) {
+          ;(instance as any).setSchematicRotation(schematic_properties.rotation)
+        }
       }
 
       if ("footprint" in instance && (props.pcb_x || props.pcb_y)) {
