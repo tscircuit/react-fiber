@@ -109,9 +109,12 @@ export const hostConfig: HostConfig<
         }
       }
 
-      if (schematic_properties.rotation) {
+      if (schematic_properties.schematic_rotation) {
         if ("setSchematicRotation" in instance) {
-          ;(instance as any).setSchematicRotation(schematic_properties.rotation)
+          console.log("setting rotation")
+          ;(instance as any).setSchematicRotation(
+            schematic_properties.schematic_rotation
+          )
         }
       }
 

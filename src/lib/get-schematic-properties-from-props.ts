@@ -4,6 +4,8 @@ import get from "lodash/get"
 export const PROP_PATH_TO_SCHEMATIC_PROPERTY_MAP = {
   port_arrangement: "port_arrangement",
   port_labels: "port_labels",
+  rotation: "schematic_rotation",
+  schematic_rotation: "schematic_rotation",
   "center.0": "schematic_center.x",
   "center.x": "schematic_center.x",
   "center.1": "schematic_center.y",
