@@ -112,6 +112,5 @@ declare global {
   }
 }
 
-type B = A["hole_diameter"]
-
-export default {}
+// TODO
+export interface ComponentParameterMap {}
