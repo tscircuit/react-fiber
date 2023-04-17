@@ -25,6 +25,8 @@ type PCBPosition = {
   center?: Point
   pcb_x?: Dimension
   pcb_y?: Dimension
+  x?: Dimension
+  y?: Dimension
   pcb_cx?: Dimension
   pcb_cy?: Dimension
   pcb_rotation?: string | number
@@ -66,7 +68,11 @@ declare global {
           from?: string
           to?: string
         }
-      smtpad: Parameters<B.SMTPadBuilder["setSourceProperties"]>[0] &
+      smtpad: Omit<
+        Parameters<B.SMTPadBuilder["setSourceProperties"]>[0],
+        "x",
+        "y"
+      > &
         PCBPosition
       port: {
         name: string
@@ -80,9 +86,14 @@ declare global {
       component: Parameters<
         B.GenericComponentBuilder["setSourceProperties"]
       >[0] & { children: any } & Position
-      platedhole: Parameters<B.PlatedHoleBuilder["setProps"]>[0] &
+      platedhole: Omit<
+        Parameters<B.PlatedHoleBuilder["setProps"]>[0],
+        "hole_diameter" | "inner_diameter" | "outer_diameter" | "x" | "y"
+      > &
         PCBPosition & {
           hole_diameter?: Dimension
+          inner_diameter?: Dimension
+          outer_diameter?: Dimension
         }
       hole: Partial<Omit<B.PCBHole, "type">> & PCBPosition
       schematicdrawing: {} // just has children
@@ -100,5 +111,7 @@ declare global {
     }
   }
 }
+
+type B = A["hole_diameter"]
 
 export default {}

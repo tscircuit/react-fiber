@@ -1,5 +1,5 @@
 import { AnyElement, createProjectBuilder } from "@tscircuit/builder"
-import { RenderTreeRoot, VNode, RenderContext } from "types"
+import { RenderTreeRoot, VNode, RenderContext } from "types/index"
 
 export const createRoot = (): RenderTreeRoot => {
   return {

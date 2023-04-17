@@ -12,7 +12,7 @@ test("render higher order component, <resistor /> and <custom />", async (t) => 
   const pb = createProjectBuilder()
   const result = await createRoot().render(
     <HOC>
-      <resistor name="R1" />
+      <resistor name="R1" resistance="10ohm" />
       <custom
         onAdd={(groupBuilder) => {
           groupBuilder.addCapacitor((cb) => {
