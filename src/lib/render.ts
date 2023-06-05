@@ -111,7 +111,6 @@ export const hostConfig: HostConfig<
 
       if (schematic_properties.schematic_rotation) {
         if ("setSchematicRotation" in instance) {
-          console.log("setting rotation")
           ;(instance as any).setSchematicRotation(
             schematic_properties.schematic_rotation
           )

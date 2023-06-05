@@ -7,18 +7,25 @@ import { logLayout } from "./utils/log-layout"
 export const ExampleCircuit = () => {
   return (
     <Fragment>
-      <resistor name="R1" resistance="10 ohm" center={[2, 1]} />
+      <resistor
+        name="R1"
+        resistance="10 ohm"
+        footprint="0402"
+        center={[2, 1]}
+      />
       <capacitor
         name="C1"
         capacitance="10 uF"
         center={[4, 2]}
         rotation="90deg"
+        footprint="0402"
       />
       <resistor
         name="R2"
         resistance="10 ohm"
         center={[6, 1]}
         rotation="90deg"
+        footprint="0402"
       />
       <trace
         path={[".R1 > port.right", ".C1 > port.left", ".R2 > port.left"]}
@@ -44,7 +51,7 @@ export const ExampleCircuit = () => {
       <trace path={[".B1 > port.PWR", ".R2 > port.left"]} />
       <ground name="GND" center={[11, 3]} />
       <trace from=".B1 > port.GND" to=".GND" />
-      <diode name="D1" center={[6, 3.5]} rotation="180deg" />
+      <diode name="D1" center={[6, 3.5]} footprint="0402" rotation="180deg" />
       <trace from=".D1 > .left" to=".B1 > .RG" />
       <trace from=".D1 > .right" to=".C1> .right" />
     </Fragment>
