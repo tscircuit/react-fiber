@@ -3,7 +3,7 @@ import test from "ava"
 import { createRoot } from "lib/render"
 import { createProjectBuilder } from "@tscircuit/builder"
 import { logLayout } from "./utils/log-layout"
-import "types/intrinsic-jsx"
+import "types/intrinsic-jsx.d.ts"
 
 const Resistor = () => (
   <component>
