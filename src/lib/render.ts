@@ -74,7 +74,13 @@ export const hostConfig: HostConfig<
 
         const setter = (instance as any)[`set${capPropName}`]
         if (setter) {
-          setter.call(instance, props[propName])
+          const isPositionProp = capPropName.endsWith("Center")
+
+          if (isPositionProp) {
+            setter.call(instance, ...props[propName])
+          } else {
+            setter.call(instance, props[propName])
+          }
           continue
         }
       }

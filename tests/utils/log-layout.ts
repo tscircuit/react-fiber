@@ -32,10 +32,11 @@ export const logLayout = async (
   if (layout_server_healthy === null) {
     try {
       await axios.get("/api/health", {
-        timeout: 1000,
+        timeout: 5000,
       })
       layout_server_healthy = true
     } catch (e) {
+      console.log(`${DEBUG_SRV} unhealthy, not uploading`)
       layout_server_healthy = false
       return
     }
@@ -43,7 +44,7 @@ export const logLayout = async (
 
   for (const layout_name of ["schematic", "pcb"]) {
     await axios.post("/api/soup_group/add_soup", {
-      soup_group_name: layout_group_name,
+      soup_group_name: `react-fiber:${layout_group_name}`,
       soup_name: layout_name,
       username: "tmp",
       content: {

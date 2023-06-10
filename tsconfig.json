@@ -21,6 +21,6 @@
       "types/*": ["src/types/*"],
     },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.test.tsx", "**/*.d.ts","src/types/instrinsic-jsx.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.test.tsx", "**/*.d.ts","src/types/instrinsic-jsx.d.ts", "tests/simple-resistor.tsx"],
   "exclude": ["node_modules"]
 }

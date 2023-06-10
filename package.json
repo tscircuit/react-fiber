@@ -16,6 +16,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@tscircuit/builder": "^1.1.1",
     "@types/react-reconciler": "^0.28.0",
     "ava": "^4.3.3",
     "axios": "^1.3.2",
@@ -32,8 +33,8 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@tscircuit/builder": "^1.0.12",
     "lodash": "^4.17.21",
-    "react-reconciler": "^0.29.0"
+    "react-reconciler": "^0.29.0",
+    "@tscircuit/builder": "^1.0.11"
   }
 }
