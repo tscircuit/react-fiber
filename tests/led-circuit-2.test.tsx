@@ -19,6 +19,8 @@ export const ExampleCircuit = () => {
         center={[4, 2]}
         rotation="90deg"
         footprint="0402"
+        pcb_x="4mm"
+        pcb_y="2mm"
       />
       <resistor
         name="R2"
@@ -26,6 +28,8 @@ export const ExampleCircuit = () => {
         center={[6, 1]}
         rotation="90deg"
         footprint="0402"
+        pcb_x="6mm"
+        pcb_y="1mm"
       />
       <trace
         path={[".R1 > port.right", ".C1 > port.left", ".R2 > port.left"]}
@@ -51,7 +55,14 @@ export const ExampleCircuit = () => {
       <trace path={[".B1 > port.PWR", ".R2 > port.left"]} />
       <ground name="GND" center={[11, 3]} />
       <trace from=".B1 > port.GND" to=".GND" />
-      <diode name="D1" center={[6, 3.5]} footprint="0402" rotation="180deg" />
+      <diode
+        name="D1"
+        center={[6, 3.5]}
+        footprint="0402"
+        rotation="180deg"
+        pcb_x="6mm"
+        pcb_y="3.5mm"
+      />
       <trace from=".D1 > .left" to=".B1 > .RG" />
       <trace from=".D1 > .right" to=".C1> .right" />
     </Fragment>
