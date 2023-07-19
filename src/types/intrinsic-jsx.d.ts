@@ -30,6 +30,7 @@ type PCBPosition = {
   pcb_cx?: Dimension
   pcb_cy?: Dimension
   pcb_rotation?: string | number
+  footprint?: string
 }
 
 type Position = SchematicPosition & PCBPosition
