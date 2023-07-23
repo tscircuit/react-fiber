@@ -50,7 +50,7 @@ declare global {
         Position & {
           port_arrangement?: {
             left_size?: number
-            top_sizew?: number
+            top_size?: number
             right_size?: number
             bottom_size?: number
           }
