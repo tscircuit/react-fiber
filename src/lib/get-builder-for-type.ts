@@ -8,6 +8,7 @@ export const builderTypeToInitializer = {
   ground: Builder.createGroundBuilder,
   bug: Builder.createBugBuilder,
   powersource: Builder.createPowerSourceBuilder,
+  netalias: Builder.createNetAliasBuilder,
   group: Builder.createGroupBuilder,
   trace: Builder.createTraceBuilder,
   smtpad: Builder.createSMTPadBuilder,

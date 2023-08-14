@@ -58,6 +58,8 @@ declare global {
             [number]: string
           }
         }
+      netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
+        Position
       ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] & Position
       powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
         Position
