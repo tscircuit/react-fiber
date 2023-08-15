@@ -8,7 +8,7 @@ import "types/intrinsic-jsx.d.ts"
 const ExampleCircuit = () => {
   return (
     <group>
-      <resistor footprint="0402" pcb_x="2mm" pcb_y={0} />
+      <resistor footprint="0402" pcb_x="2mm" pcb_y={0} resistance="10kohm" />
     </group>
   )
 }

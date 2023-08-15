@@ -39,13 +39,14 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       resistor: Parameters<B.ResistorBuilder["setSourceProperties"]>[0] &
-        Position
+        Position & { children?: any }
       custom: any
       capacitor: Parameters<B.CapacitorBuilder["setSourceProperties"]>[0] &
-        Position
+        Position & { children?: any }
       inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
-        Position
-      diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0] & Position
+        Position & { children?: any }
+      diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0] &
+        Position & { children?: any }
       bug: Parameters<B.BugBuilder["setSourceProperties"]>[0] &
         Position & {
           port_arrangement?: {
@@ -57,12 +58,13 @@ declare global {
           port_labels?: {
             [number]: string
           }
-        }
+        } & { children?: any }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
-        Position
-      ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] & Position
+        Position & { children?: any }
+      ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] &
+        Position & { children?: any }
       powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
-        Position
+        Position & { children?: any }
       group: Parameters<B.GroupBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
       trace: Parameters<B.TraceBuilder["setSourceProperties"]>[0] &
