@@ -138,6 +138,7 @@ export const hostConfig: HostConfig<
             "if defining width, must also define height and vice versa"
           )
         }
+        // ;(instance as any).setSize
       }
 
       return instance
