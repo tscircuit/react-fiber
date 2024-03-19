@@ -33,6 +33,11 @@ type PCBPosition = {
   footprint?: string
 }
 
+type ExplicitPinSideDefinition = {
+  pins: number[]
+  direction?: "top-to-bottom" | "left-to-right" | "bottom-to-top" | "right-to-left"
+}
+
 type Position = SchematicPosition & PCBPosition
 
 declare global {
@@ -54,6 +59,11 @@ declare global {
             top_size?: number
             right_size?: number
             bottom_size?: number
+          } | {
+            left_side?: ExplicitPinSideDefinition
+            right_side?: ExplicitPinSideDefinition
+            top_side?: ExplicitPinSideDefinition
+            bottom_side?: ExplicitPinSideDefinition
           }
           port_labels?: {
             [number]: string
