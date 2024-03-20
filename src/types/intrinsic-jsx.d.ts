@@ -1,4 +1,5 @@
 import type * as B from "@tscircuit/builder"
+import { ReactElement } from "react"
 
 type Point = [number, number] | { x: number; y: number }
 
@@ -47,8 +48,11 @@ type Position = SchematicPosition & PCBPosition
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      resistor: Parameters<B.ResistorBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+      resistor: { name: string; resistance: Dimension } & Position & {
+          children?: any
+        } & {
+          footprint?: any
+        }
       custom: any
       capacitor: Parameters<B.CapacitorBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
@@ -89,14 +93,15 @@ declare global {
           from?: string
           to?: string
         }
-      smtpad: Omit<
-        Parameters<B.SMTPadBuilder["setSourceProperties"]>[0],
-        "x" | "y"
-      > & {
+      smtpad: {
         shape: "circle" | "rect"
+        x: Dimension
+        y: Dimension
         layer?: string
         radius?: string
-        size?: { width: number | string; height: number | string }
+        width?: Dimension
+        height?: Dimension
+        // size?: { width: number | string; height: number | string }
       } & PCBPosition
       port: {
         name: string

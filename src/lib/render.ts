@@ -59,12 +59,10 @@ export const hostConfig: HostConfig<
       props.onAdd(instance)
       return instance
     } else if (typeof type === "string") {
-      console.log("RENDERING ", type)
       const instance = getBuilderForType(type, rootContainer.project_builder)
 
       let footprint = props.footprint
       if (props.footprint && isValidElement(props.footprint)) {
-        console.log("Converting props.footprint")
         const fb = createFootprintBuilder(rootContainer.project_builder)
         ;(fb as any).createBuildContext =
           rootContainer.project_builder.createBuildContext
@@ -173,22 +171,18 @@ export const hostConfig: HostConfig<
     throw new Error("Text is not allowed in TSCircuit React")
   },
   appendInitialChild(parent: any, child) {
-    console.log("appendInitialChild")
     // throw new Error("appendInitialChild not implemented")
     // console.log(child.build())
     parent.appendChild(child)
   },
   appendChild(parent, child) {
-    console.log("appendChild")
     throw new Error("appendChild not implemented")
   },
   finalizeInitialChildren(instance, type, props) {
-    console.log("finalizeInitialChildren")
     // NOTE: return true for commitMount
     return false
   },
   appendChildToContainer(container: any, child) {
-    console.log("appendChildToContainer")
     if (!("appendChild" in container)) {
       throw new Error(
         `Container "${container.builder_type}" does not support appending children`
