@@ -1,13 +1,15 @@
 import {
   BaseComponentBuilder,
   ComponentBuilder,
+  createFootprintBuilder,
   createGroupBuilder,
+  createProjectBuilder,
   createResistorBuilder,
   GroupBuilder,
   ProjectBuilder,
   TraceBuilder,
 } from "@tscircuit/builder"
-import { ReactNode } from "react"
+import { ReactNode, isValidElement } from "react"
 import ReactReconciler, { Fiber, HostConfig } from "react-reconciler"
 import {
   getBuilderForType,
@@ -15,6 +17,7 @@ import {
   BuilderType,
 } from "./get-builder-for-type"
 import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from-props"
+import _ from "lodash"
 
 export type RootContainer = {}
 
@@ -59,8 +62,24 @@ export const hostConfig: HostConfig<
     } else if (typeof type === "string") {
       const instance = getBuilderForType(type, rootContainer.project_builder)
 
+      let footprint = props.footprint
+      if (props.footprint && isValidElement(props.footprint)) {
+        const fb = createFootprintBuilder(rootContainer.project_builder)
+        ;(fb as any).createBuildContext =
+          rootContainer.project_builder.createBuildContext
+        createRoot().render(props.footprint, fb as any)
+        footprint = fb
+      }
+
       if ("setProps" in instance) {
-        ;(instance as any).setProps(props)
+        const propsWithElms = _.omitBy(
+          {
+            ...props,
+            footprint,
+          },
+          _.isUndefined
+        )
+        ;(instance as any).setProps(propsWithElms)
         return instance
       }
 
@@ -147,10 +166,10 @@ export const hostConfig: HostConfig<
     throw new Error(`Couldn't handle type: "${type}"`)
   },
   getRootHostContext() {
-    return {}
+    return null
   },
-  getChildHostContext() {
-    return {}
+  getChildHostContext(parentHostContext, type, rootContainer) {
+    return parentHostContext
   },
   createTextInstance() {
     throw new Error("Text is not allowed in TSCircuit React")
@@ -196,6 +215,12 @@ export const hostConfig: HostConfig<
     return false
   },
   clearContainer(container) {
+    if (!container.reset) {
+      console.warn(
+        `CONTAINER IS MISSING RESET! Add to builder "${container.builder_type}"`
+      )
+      return
+    }
     container.reset()
   },
   supportsPersistence: false,
@@ -242,13 +267,14 @@ export const hostConfig: HostConfig<
 
 export const createRoot = () => {
   return {
-    async render(
+    render(
       element: ReactNode,
       projectBuilder: ProjectBuilder & { _rootContainer?: RootContainer },
       callback: null | (() => void) = null
     ) {
       const container = {}
       const reconciler = ReactReconciler(hostConfig)
+
       if (!projectBuilder._rootContainer) {
         projectBuilder._rootContainer = reconciler.createContainer(
           projectBuilder,
@@ -269,7 +295,7 @@ export const createRoot = () => {
         null,
         callback
       )
-      return projectBuilder.build()
+      return projectBuilder.build(projectBuilder.createBuildContext())
     },
   }
 }
