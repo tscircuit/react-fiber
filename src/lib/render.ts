@@ -17,6 +17,7 @@ import {
   BuilderType,
 } from "./get-builder-for-type"
 import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from-props"
+import _ from "lodash"
 
 export type RootContainer = {}
 
@@ -71,10 +72,13 @@ export const hostConfig: HostConfig<
       }
 
       if ("setProps" in instance) {
-        const propsWithElms = {
-          ...props,
-          footprint,
-        }
+        const propsWithElms = _.omitBy(
+          {
+            ...props,
+            footprint,
+          },
+          _.isUndefined
+        )
         ;(instance as any).setProps(propsWithElms)
         return instance
       }

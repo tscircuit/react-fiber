@@ -1,4 +1,5 @@
 import defaultAxios from "axios"
+import { Mutex } from "async-mutex"
 
 const DEBUG_SRV = `https://debug.tscircuit.com`
 
@@ -22,6 +23,8 @@ function findSource(elm: any, sources: Array<any>) {
   return null
 }
 
+const request_mutex = new Mutex()
+
 let layout_server_healthy: boolean | null = null
 export const logLayout = async (
   layout_group_name: string,
@@ -43,18 +46,24 @@ export const logLayout = async (
   }
 
   for (const layout_name of ["schematic", "pcb"]) {
-    await axios.post("/api/soup_group/add_soup", {
-      soup_group_name: `react-fiber:${layout_group_name}`,
-      soup_name: layout_name,
-      username: "tmp",
-      content: {
-        elements: objects
-          .filter((o) => o.type?.includes(layout_name))
-          .map((o: any) => ({
-            ...o,
-            source: findSource(o, objects),
-          })),
-      },
+    await request_mutex.runExclusive(async () => {
+      await axios
+        .post("/api/soup_group/add_soup", {
+          soup_group_name: `react-fiber:${layout_group_name}`,
+          soup_name: layout_name,
+          username: "tmp",
+          content: {
+            elements: objects
+              .filter((o) => o.type?.includes(layout_name))
+              .map((o: any) => ({
+                ...o,
+                source: findSource(o, objects),
+              })),
+          },
+        })
+        .catch((e) => {
+          console.warn(`Couldn't log layout: ${layout_group_name}`)
+        })
     })
   }
 }
