@@ -35,7 +35,11 @@ type PCBPosition = {
 
 type ExplicitPinSideDefinition = {
   pins: number[]
-  direction?: "top-to-bottom" | "left-to-right" | "bottom-to-top" | "right-to-left"
+  direction?:
+    | "top-to-bottom"
+    | "left-to-right"
+    | "bottom-to-top"
+    | "right-to-left"
 }
 
 type Position = SchematicPosition & PCBPosition
@@ -54,17 +58,19 @@ declare global {
         Position & { children?: any }
       bug: Parameters<B.BugBuilder["setSourceProperties"]>[0] &
         Position & {
-          port_arrangement?: {
-            left_size?: number
-            top_size?: number
-            right_size?: number
-            bottom_size?: number
-          } | {
-            left_side?: ExplicitPinSideDefinition
-            right_side?: ExplicitPinSideDefinition
-            top_side?: ExplicitPinSideDefinition
-            bottom_side?: ExplicitPinSideDefinition
-          }
+          port_arrangement?:
+            | {
+                left_size?: number
+                top_size?: number
+                right_size?: number
+                bottom_size?: number
+              }
+            | {
+                left_side?: ExplicitPinSideDefinition
+                right_side?: ExplicitPinSideDefinition
+                top_side?: ExplicitPinSideDefinition
+                bottom_side?: ExplicitPinSideDefinition
+              }
           port_labels?: {
             [number]: string
           }
@@ -85,10 +91,13 @@ declare global {
         }
       smtpad: Omit<
         Parameters<B.SMTPadBuilder["setSourceProperties"]>[0],
-        "x",
-        "y"
-      > &
-        PCBPosition
+        "x" | "y"
+      > & {
+        shape: "circle" | "rect"
+        layer?: string
+        radius?: string
+        size?: { width: number | string; height: number | string }
+      } & PCBPosition
       port: {
         name: string
         direction?: string

@@ -1,13 +1,15 @@
 import {
   BaseComponentBuilder,
   ComponentBuilder,
+  createFootprintBuilder,
   createGroupBuilder,
+  createProjectBuilder,
   createResistorBuilder,
   GroupBuilder,
   ProjectBuilder,
   TraceBuilder,
 } from "@tscircuit/builder"
-import { ReactNode } from "react"
+import { ReactNode, isValidElement } from "react"
 import ReactReconciler, { Fiber, HostConfig } from "react-reconciler"
 import {
   getBuilderForType,
@@ -57,10 +59,25 @@ export const hostConfig: HostConfig<
       props.onAdd(instance)
       return instance
     } else if (typeof type === "string") {
+      console.log("RENDERING ", type)
       const instance = getBuilderForType(type, rootContainer.project_builder)
 
+      let footprint = props.footprint
+      if (props.footprint && isValidElement(props.footprint)) {
+        console.log("Converting props.footprint")
+        const fb = createFootprintBuilder(rootContainer.project_builder)
+        ;(fb as any).createBuildContext =
+          rootContainer.project_builder.createBuildContext
+        createRoot().render(props.footprint, fb as any)
+        footprint = fb
+      }
+
       if ("setProps" in instance) {
-        ;(instance as any).setProps(props)
+        const propsWithElms = {
+          ...props,
+          footprint,
+        }
+        ;(instance as any).setProps(propsWithElms)
         return instance
       }
 
@@ -147,27 +164,31 @@ export const hostConfig: HostConfig<
     throw new Error(`Couldn't handle type: "${type}"`)
   },
   getRootHostContext() {
-    return {}
+    return null
   },
-  getChildHostContext() {
-    return {}
+  getChildHostContext(parentHostContext, type, rootContainer) {
+    return parentHostContext
   },
   createTextInstance() {
     throw new Error("Text is not allowed in TSCircuit React")
   },
   appendInitialChild(parent: any, child) {
+    console.log("appendInitialChild")
     // throw new Error("appendInitialChild not implemented")
     // console.log(child.build())
     parent.appendChild(child)
   },
   appendChild(parent, child) {
+    console.log("appendChild")
     throw new Error("appendChild not implemented")
   },
   finalizeInitialChildren(instance, type, props) {
+    console.log("finalizeInitialChildren")
     // NOTE: return true for commitMount
     return false
   },
   appendChildToContainer(container: any, child) {
+    console.log("appendChildToContainer")
     if (!("appendChild" in container)) {
       throw new Error(
         `Container "${container.builder_type}" does not support appending children`
@@ -196,6 +217,12 @@ export const hostConfig: HostConfig<
     return false
   },
   clearContainer(container) {
+    if (!container.reset) {
+      console.warn(
+        `CONTAINER IS MISSING RESET! Add to builder "${container.builder_type}"`
+      )
+      return
+    }
     container.reset()
   },
   supportsPersistence: false,
@@ -242,13 +269,14 @@ export const hostConfig: HostConfig<
 
 export const createRoot = () => {
   return {
-    async render(
+    render(
       element: ReactNode,
       projectBuilder: ProjectBuilder & { _rootContainer?: RootContainer },
       callback: null | (() => void) = null
     ) {
       const container = {}
       const reconciler = ReactReconciler(hostConfig)
+
       if (!projectBuilder._rootContainer) {
         projectBuilder._rootContainer = reconciler.createContainer(
           projectBuilder,
@@ -269,7 +297,7 @@ export const createRoot = () => {
         null,
         callback
       )
-      return projectBuilder.build()
+      return projectBuilder.build(projectBuilder.createBuildContext())
     },
   }
 }
