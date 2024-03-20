@@ -31,7 +31,7 @@ type PCBPosition = {
   pcb_cx?: Dimension
   pcb_cy?: Dimension
   pcb_rotation?: string | number
-  footprint?: string
+  footprint?: any
 }
 
 type ExplicitPinSideDefinition = {
@@ -55,12 +55,15 @@ declare global {
         }
       custom: any
       capacitor: Parameters<B.CapacitorBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+        Position & { children?: any; footprint?: any }
       inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
       diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
-      bug: Parameters<B.BugBuilder["setSourceProperties"]>[0] &
+      bug: Omit<
+        Parameters<B.BugBuilder["setSourceProperties"]>[0],
+        "footprint"
+      > &
         Position & {
           port_arrangement?:
             | {
@@ -78,7 +81,7 @@ declare global {
           port_labels?: {
             [number]: string
           }
-        } & { children?: any }
+        } & { footprint?: any; children?: any }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
       ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] &
