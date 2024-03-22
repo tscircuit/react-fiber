@@ -104,6 +104,7 @@ declare global {
         radius?: string
         width?: Dimension
         height?: Dimension
+        port_hints?: string[]
         // size?: { width: number | string; height: number | string }
       } & PCBPosition
       port: {
@@ -123,6 +124,7 @@ declare global {
         "hole_diameter" | "inner_diameter" | "outer_diameter" | "x" | "y"
       > &
         PCBPosition & {
+          port_hints?: string[]
           hole_diameter?: Dimension
           inner_diameter?: Dimension
           outer_diameter?: Dimension
