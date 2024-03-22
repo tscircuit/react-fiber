@@ -23,6 +23,8 @@ export const builderTypeToInitializer = {
   box: Builder.createBoxBuilder, // CONTEXT DEPENDENT HOW DO? TODO
   schematicbox: Builder.createSchematicBoxBuilder,
   line: Builder.createSchematicLineBuilder,
+  sline: Builder.createSchematicLineBuilder,
+  schematicline: Builder.createSchematicLineBuilder,
   constraint: Builder.createConstraintBuilder,
   board: (Builder as any).createBoardBuilder,
   silkscreen: (Builder as any).createSilkscreenBuilder,
