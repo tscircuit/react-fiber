@@ -142,6 +142,10 @@ declare global {
       // "line" conflicts w/ svg
       sline: Parameters<B.SchematicLineBuilder["setProps"]>[0] &
         SchematicPosition
+      schematicline: Parameters<B.SchematicLineBuilder["setProps"]>[0] &
+        SchematicPosition
+      schematictext: Parameters<B.SchematicTextBuilder["setProps"]>[0] &
+        SchematicPosition
     }
   }
 }

@@ -31,6 +31,7 @@ export const builderTypeToInitializer = {
   copperpour: (Builder as any).createCopperPourBuilder,
   circle: (Builder as any).createCircleBuilder,
   text: Builder.createSchematicTextBuilder,
+  schematictext: Builder.createSchematicTextBuilder,
   image: (Builder as any).createImageBuilder,
   constrainedlayout: Builder.createConstrainedLayoutBuilder,
 }
