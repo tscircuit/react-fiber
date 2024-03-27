@@ -17,6 +17,7 @@
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@tscircuit/builder": "^1.5.9",
+    "@tscircuit/sparkfun-packages": "^1.1.0",
     "@types/lodash": "^4.17.0",
     "@types/react-reconciler": "^0.28.0",
     "async-mutex": "^0.5.0",
@@ -25,11 +26,11 @@
     "esbuild": "^0.15.18",
     "esbuild-register": "^3.3.3",
     "esbuild-runner": "^2.2.1",
+    "lodash": "^4.17.21",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "tsup": "^6.2.3",
-    "typescript": "^4.8.3",
-    "lodash": "^4.17.21"
+    "typescript": "^4.8.3"
   },
   "peerDependencies": {
     "@tscircuit/builder": "*",

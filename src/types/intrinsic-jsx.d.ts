@@ -1,4 +1,5 @@
 import type * as B from "@tscircuit/builder"
+import type { SparkfunComponentId } from "@tscircuit/sparkfun-packages"
 import { ReactElement } from "react"
 
 type Point = [number, number] | { x: number; y: number }
@@ -31,7 +32,7 @@ type PCBPosition = {
   pcb_cx?: Dimension
   pcb_cy?: Dimension
   pcb_rotation?: string | number
-  footprint?: any
+  footprint?: SparkfunComponentId | ReactElement
 }
 
 type ExplicitPinSideDefinition = {
