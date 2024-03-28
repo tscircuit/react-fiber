@@ -89,12 +89,14 @@ declare global {
         Position & { children?: any }
       group: Parameters<B.GroupBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
-      trace: Parameters<B.TraceBuilder["setSourceProperties"]>[0] &
-        PCBPosition & {
-          path?: string[]
-          from?: string
-          to?: string
-        }
+      trace:
+        | {
+            path: string[]
+          }
+        | {
+            from: string
+            to: string
+          }
       smtpad: {
         shape: "circle" | "rect"
         x: Dimension
@@ -110,8 +112,8 @@ declare global {
         name: string
         direction?: string
         dir?: string
-        x: number | string
-        y: number | string
+        x: Dimension
+        y: Dimension
       } & Position
       ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0] & Position
       footprint: {} // just has children

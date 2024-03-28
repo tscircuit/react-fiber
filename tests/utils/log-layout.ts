@@ -54,7 +54,10 @@ export const logLayout = async (
           username: "tmp",
           content: {
             elements: objects
-              .filter((o) => o.type?.includes(layout_name))
+              .filter(
+                (o) =>
+                  o.type?.includes(layout_name) || o.type?.includes("source")
+              )
               .map((o: any) => ({
                 ...o,
                 source: findSource(o, objects),
