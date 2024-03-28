@@ -2,11 +2,9 @@ import type * as B from "@tscircuit/builder"
 import type { SparkfunComponentId } from "@tscircuit/sparkfun-packages"
 import { ReactElement } from "react"
 
-type Point = [number, number] | { x: number; y: number }
-
-// TODO remove when we figure out why B.Dimension is not working (coming in as
-// number)
 type Dimension = number | string
+type Point = [number, number] | { x: number; y: number }
+type DimensionPoint = [Dimension, Dimension] | { x: Dimension; y: Dimension }
 
 type SchematicPosition = {
   center?: Point
@@ -145,8 +143,10 @@ declare global {
         SchematicPosition
       schematicline: Parameters<B.SchematicLineBuilder["setProps"]>[0] &
         SchematicPosition
-      schematictext: Parameters<B.SchematicTextBuilder["setProps"]>[0] &
-        SchematicPosition
+      schematictext: Parameters<
+        Omit<B.SchematicTextBuilder["setProps"], "position">
+      >[0] &
+        SchematicPosition & { position?: DimensionPoint }
     }
   }
 }

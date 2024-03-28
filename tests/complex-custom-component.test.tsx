@@ -4,21 +4,23 @@ import { createRoot } from "lib/render"
 import { createProjectBuilder } from "@tscircuit/builder"
 import { logLayout } from "./utils/log-layout"
 
-test("render footprint", async (t) => {
+test("react fiber complex component", async (t) => {
   const pb = createProjectBuilder()
   const result = await createRoot().render(
     <component>
-      <schematicbox x={0} y={0} width="10mm" height="10mm" />
-      <port name="v1" x="5mm" y="-3mm" dir="right" />
-      <port name="v2" x="5mm" y="0mm" dir="right" />
-      <port name="gnd" x="5mm" y="3mm" dir="right" />
+      <schematicbox x={0} y={0} width="5mm" height="5mm" />
+      <schematictext x={0} y={0} text="Complex Component" />
+      <schematicline x1={-0.1} y1={1} x2={0.1} y2={1} />
+      <port name="v1" x="2.5mm" y="-1mm" dir="right" />
+      <port name="v2" x="2.5mm" y="0mm" dir="right" />
+      <port name="gnd" x="2.5mm" y="1mm" dir="right" />
       <platedhole x={0} y={0} hole_diameter="1mm" outer_diameter="2mm" />
       <platedhole x="3mm" y={0} hole_diameter="1mm" outer_diameter="2mm" />
       <smtpad x="6mm" y={0} width="3mm" height="3mm" shape="rect" />
     </component>,
-
     pb
   )
-  await logLayout("react-fiber some test", result)
+
+  await logLayout("react-fiber complex component", result)
   t.pass()
 })
