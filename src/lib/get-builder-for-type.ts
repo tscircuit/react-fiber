@@ -25,6 +25,7 @@ export const builderTypeToInitializer = {
   line: Builder.createSchematicLineBuilder,
   sline: Builder.createSchematicLineBuilder,
   schematicline: Builder.createSchematicLineBuilder,
+  schematicpath: Builder.createSchematicPathBuilder,
   constraint: Builder.createConstraintBuilder,
   board: (Builder as any).createBoardBuilder,
   silkscreen: (Builder as any).createSilkscreenBuilder,

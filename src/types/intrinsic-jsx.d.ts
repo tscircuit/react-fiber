@@ -143,10 +143,17 @@ declare global {
         SchematicPosition
       schematicline: Parameters<B.SchematicLineBuilder["setProps"]>[0] &
         SchematicPosition
-      schematictext: Parameters<
-        Omit<B.SchematicTextBuilder["setProps"], "position">
-      >[0] &
-        SchematicPosition & { position?: DimensionPoint }
+      schematictext: {
+        text: string
+        x?: Dimension
+        y?: Dimension
+        position?: Point
+      }
+      schematicpath: {
+        points: DimensionPoint[]
+        is_filled?: boolean
+        fill_color?: "blue" | "red"
+      }
     }
   }
 }
