@@ -110,6 +110,7 @@ declare global {
       port: {
         name: string
         direction?: string
+        pin_number?: number
         dir?: string
         x: Dimension
         y: Dimension
