@@ -35,8 +35,8 @@ declare global {
       } & Position
       inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
-      diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+      diode: {} & Position
+      led: { color?: string } & Position
       bug: Omit<
         Parameters<B.BugBuilder["setSourceProperties"]>[0],
         "footprint"

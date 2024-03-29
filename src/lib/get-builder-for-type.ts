@@ -5,6 +5,7 @@ export const builderTypeToInitializer = {
   capacitor: Builder.createCapacitorBuilder,
   inductor: Builder.createInductorBuilder,
   diode: Builder.createDiodeBuilder,
+  led: Builder.createDiodeBuilder,
   ground: Builder.createGroundBuilder,
   bug: Builder.createBugBuilder,
   powersource: Builder.createPowerSourceBuilder,
