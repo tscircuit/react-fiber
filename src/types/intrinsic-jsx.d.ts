@@ -30,8 +30,8 @@ declare global {
       } & CommonLayout
       inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
-      diode: {} & CommonLayout
-      led: { color?: string } & CommonLayout
+      diode: { name: string } & CommonLayout
+      led: { name: string; color?: string } & CommonLayout
       bug: Omit<
         Parameters<B.BugBuilder["setSourceProperties"]>[0],
         "footprint"
