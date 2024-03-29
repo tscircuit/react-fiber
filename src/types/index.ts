@@ -1,5 +1,7 @@
 import { AnyElement, GroupBuilder, ProjectBuilder } from "@tscircuit/builder"
 
+export type { StandardFootprint } from "@tscircuit/builder"
+
 export type RenderTreeRoot = {
   renderToElements: (vnode: VNode) => Promise<AnyElement[]>
 }
