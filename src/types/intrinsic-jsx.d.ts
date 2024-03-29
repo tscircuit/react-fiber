@@ -17,8 +17,6 @@ type ExplicitPinSideDefinition = {
     | "right-to-left"
 }
 
-type Position = CommonLayout
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -26,22 +24,22 @@ declare global {
         name: string
         resistance: Dimension
         children?: any
-      } & Position
+      } & CommonLayout
       custom: any
       capacitor: {
         name: string
         capacitance: Dimension
         children?: any
-      } & Position
+      } & CommonLayout
       inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
-      diode: {} & Position
-      led: { color?: string } & Position
+        CommonLayout & { children?: any }
+      diode: {} & CommonLayout
+      led: { color?: string } & CommonLayout
       bug: Omit<
         Parameters<B.BugBuilder["setSourceProperties"]>[0],
         "footprint"
       > &
-        Position & {
+        CommonLayout & {
           port_arrangement?:
             | {
                 left_size?: number
@@ -60,13 +58,13 @@ declare global {
           }
         } & { footprint?: any; children?: any }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+        CommonLayout & { children?: any }
       ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+        CommonLayout & { children?: any }
       powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+        CommonLayout & { children?: any }
       group: Parameters<B.GroupBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any }
+        CommonLayout & { children?: any }
       trace:
         | {
             path: string[]
@@ -93,12 +91,12 @@ declare global {
         dir?: string
         x: Dimension
         y: Dimension
-      } & Position
-      ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0] & Position
+      } & CommonLayout
+      ports: Parameters<B.PortsBuilder["setSourceProperties"]>[0] & CommonLayout
       footprint: {} // just has children
       component: Parameters<
         B.GenericComponentBuilder["setSourceProperties"]
-      >[0] & { children: any } & Position
+      >[0] & { children: any } & CommonLayout
       platedhole: Omit<
         Parameters<B.PlatedHoleBuilder["setProps"]>[0],
         "hole_diameter" | "inner_diameter" | "outer_diameter" | "x" | "y"
@@ -113,7 +111,7 @@ declare global {
       schematicdrawing: {} // just has children
 
       // box can be used for pcb silkscreen too... maybe remove?
-      box: Parameters<B.SchematicBoxBuilder["setProps"]>[0] & Position
+      box: Parameters<B.SchematicBoxBuilder["setProps"]>[0] & CommonLayout
       schematicbox: Parameters<B.SchematicBoxBuilder["setProps"]>[0] &
         SchematicPosition
       constraint: Parameters<B.ConstraintBuilder["setProps"]>[0]
