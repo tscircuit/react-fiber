@@ -6,15 +6,12 @@ import {
   Point,
   DimensionPoint,
   CommonLayout,
+  RelativeDirection,
 } from "./positions"
 
 type ExplicitPinSideDefinition = {
   pins: number[]
-  direction?:
-    | "top-to-bottom"
-    | "left-to-right"
-    | "bottom-to-top"
-    | "right-to-left"
+  direction?: RelativeDirection
 }
 
 declare global {

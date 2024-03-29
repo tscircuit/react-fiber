@@ -34,4 +34,10 @@ export interface PCBPosition {
   footprint?: B.StandardFootprint | ReactElement
 }
 
+export type RelativeDirection =
+  | "top-to-bottom"
+  | "left-to-right"
+  | "bottom-to-top"
+  | "right-to-left"
+
 export interface CommonLayout extends SchematicPosition, PCBPosition {}
