@@ -1,36 +1,12 @@
 import type * as B from "@tscircuit/builder"
-import { ReactElement } from "react"
-
-type Dimension = number | string
-type Point = [number, number] | { x: number; y: number }
-type DimensionPoint = [Dimension, Dimension] | { x: Dimension; y: Dimension }
-
-type SchematicPosition = {
-  center?: Point
-  x?: Dimension
-  y?: Dimension
-  cx?: Dimension
-  cy?: Dimension
-  sch_x?: Dimension
-  sch_y?: Dimension
-  sch_cx?: Dimension
-  sch_cy?: Dimension
-  sch_center?: Point
-  sch_rotation?: string | number
-  rotation?: string | number
-}
-
-type PCBPosition = {
-  center?: Point
-  pcb_x?: Dimension
-  pcb_y?: Dimension
-  x?: Dimension
-  y?: Dimension
-  pcb_cx?: Dimension
-  pcb_cy?: Dimension
-  pcb_rotation?: string | number
-  footprint?: B.StandardFootprint | ReactElement
-}
+import {
+  SchematicPosition,
+  PCBPosition,
+  Dimension,
+  Point,
+  DimensionPoint,
+  CommonLayout,
+} from "./positions"
 
 type ExplicitPinSideDefinition = {
   pins: number[]
@@ -41,19 +17,22 @@ type ExplicitPinSideDefinition = {
     | "right-to-left"
 }
 
-type Position = SchematicPosition & PCBPosition
+type Position = CommonLayout
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      resistor: { name: string; resistance: Dimension } & Position & {
-          children?: any
-        } & {
-          footprint?: any
-        }
+      resistor: {
+        name: string
+        resistance: Dimension
+        children?: any
+      } & Position
       custom: any
-      capacitor: Parameters<B.CapacitorBuilder["setSourceProperties"]>[0] &
-        Position & { children?: any; footprint?: any }
+      capacitor: {
+        name: string
+        capacitance: Dimension
+        children?: any
+      } & Position
       inductor: Parameters<B.InductorBuilder["setSourceProperties"]>[0] &
         Position & { children?: any }
       diode: Parameters<B.DiodeBuilder["setSourceProperties"]>[0] &
