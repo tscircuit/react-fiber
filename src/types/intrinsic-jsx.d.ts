@@ -14,6 +14,13 @@ type ExplicitPinSideDefinition = {
   direction?: RelativeDirection
 }
 
+interface PCBRouteHintPoint {
+  x: string | number
+  y: string | number
+  via?: boolean
+  via_to_layer?: string
+}
+
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -65,10 +72,14 @@ declare global {
       trace:
         | {
             path: string[]
+            schematic_route_hints?: DimensionPoint[]
+            pcb_route_hints?: PCBRouteHintPoint[]
           }
         | {
             from: string
             to: string
+            schematic_route_hints?: DimensionPoint[]
+            pcb_route_hints?: PCBRouteHintPoint[]
           }
       smtpad: {
         shape: "circle" | "rect"
