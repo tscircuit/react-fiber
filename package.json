@@ -6,7 +6,7 @@
   "author": "seveibar <seveibar@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsup ./src --dts --sourcemap",
+    "build": "tsup",
     "typecheck": "tsc --noEmit",
     "test": "ava",
     "yalc": "npm run build && yalc push"
