@@ -61,6 +61,15 @@ declare global {
             [number]: string
           }
         } & { footprint?: any; children?: any }
+      via: {
+        name: string
+        x: Dimension
+        y: Dimension
+        pcb_x: Dimension
+        pcb_y: Dimension
+        hole_diameter?: Dimension
+        inner_diameter?: Dimension
+      }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
       ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] &
