@@ -69,6 +69,8 @@ declare global {
         pcb_y: Dimension
         hole_diameter?: Dimension
         outer_diameter?: Dimension
+        from_layer: B.LayerRef
+        to_layer: B.LayerRef
       }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
