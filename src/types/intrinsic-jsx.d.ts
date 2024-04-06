@@ -68,7 +68,7 @@ declare global {
         pcb_x: Dimension
         pcb_y: Dimension
         hole_diameter?: Dimension
-        inner_diameter?: Dimension
+        outer_diameter?: Dimension
       }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
