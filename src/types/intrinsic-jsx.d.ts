@@ -8,6 +8,7 @@ import {
   CommonLayout,
   RelativeDirection,
 } from "./positions"
+import { ReactNode } from "react"
 
 type ExplicitPinSideDefinition = {
   pins: number[]
@@ -60,7 +61,7 @@ declare global {
           port_labels?: {
             [number]: string
           }
-        } & { footprint?: any; children?: any }
+        } & { footprint?: B.StandardFootprint | ReactNode; children?: any }
       via: {
         name: string
         x: Dimension
