@@ -32,6 +32,11 @@ export interface PCBPosition {
   pcb_cy?: Dimension
   pcb_rotation?: string | number
   footprint?: B.StandardFootprint | ReactElement
+  pcb_layer?: B.LayerRef
+}
+
+const a: PCBPosition = {
+  pcb_layer: "top",
 }
 
 export type RelativeDirection =
