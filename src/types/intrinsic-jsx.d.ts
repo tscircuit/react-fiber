@@ -35,6 +35,7 @@ declare global {
         height: Dimension
         center_x: Dimension
         center_y: Dimension
+        children?: any
       }
       custom: any
       capacitor: {
