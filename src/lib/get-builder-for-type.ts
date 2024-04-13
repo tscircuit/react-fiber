@@ -2,6 +2,7 @@ import * as Builder from "@tscircuit/builder"
 
 export const builderTypeToInitializer = {
   resistor: Builder.createResistorBuilder,
+  board: Builder.createBoardBuilder,
   capacitor: Builder.createCapacitorBuilder,
   inductor: Builder.createInductorBuilder,
   diode: Builder.createDiodeBuilder,
@@ -28,7 +29,6 @@ export const builderTypeToInitializer = {
   schematicline: Builder.createSchematicLineBuilder,
   schematicpath: Builder.createSchematicPathBuilder,
   constraint: Builder.createConstraintBuilder,
-  board: (Builder as any).createBoardBuilder,
   silkscreen: (Builder as any).createSilkscreenBuilder,
   copperpour: (Builder as any).createCopperPourBuilder,
   circle: (Builder as any).createCircleBuilder,
