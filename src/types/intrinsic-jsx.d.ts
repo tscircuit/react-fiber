@@ -30,6 +30,12 @@ declare global {
         resistance: Dimension
         children?: any
       } & CommonLayout
+      board: {
+        width: Dimension
+        height: Dimension
+        center_x: Dimension
+        center_y: Dimension
+      }
       custom: any
       capacitor: {
         name: string
