@@ -274,7 +274,7 @@ export const createRoot = () => {
 
       if (!projectBuilder._rootContainer) {
         projectBuilder._rootContainer = reconciler.createContainer(
-          projectBuilder,
+          projectBuilder as any,
           0,
           null,
           false,

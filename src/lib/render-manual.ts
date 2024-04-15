@@ -7,7 +7,7 @@ export const createRoot = (): RenderTreeRoot => {
       const projectBuilder = createProjectBuilder()
       const context: RenderContext = {
         projectBuilder,
-        parentGroup: projectBuilder,
+        parentGroup: projectBuilder as any,
       }
       await renderVNode(context, vnode)
       return projectBuilder.build()

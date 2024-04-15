@@ -36,7 +36,7 @@ export interface PCBPosition {
 }
 
 export interface BomProps {
-  supplier_part_numbers: Partial<Record<B.SupplierName, string[] | string>>
+  supplier_part_numbers?: Partial<Record<B.SupplierName, string[] | string>>
 }
 
 const a: PCBPosition = {
