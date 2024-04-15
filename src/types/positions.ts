@@ -35,6 +35,10 @@ export interface PCBPosition {
   pcb_layer?: B.LayerRef
 }
 
+export interface BomProps {
+  supplier_part_numbers: Partial<Record<B.SupplierName, string[] | string>>
+}
+
 const a: PCBPosition = {
   pcb_layer: "top",
 }
@@ -45,4 +49,7 @@ export type RelativeDirection =
   | "bottom-to-top"
   | "right-to-left"
 
-export interface CommonLayout extends SchematicPosition, PCBPosition {}
+export interface CommonLayout
+  extends SchematicPosition,
+    PCBPosition,
+    BomProps {}
