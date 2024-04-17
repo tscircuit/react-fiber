@@ -91,12 +91,14 @@ declare global {
       trace:
         | {
             path: string[]
+            thickness?: Dimension
             schematic_route_hints?: DimensionPoint[]
             pcb_route_hints?: PCBRouteHintPoint[]
           }
         | {
             from: string
             to: string
+            thickness?: Dimension
             schematic_route_hints?: DimensionPoint[]
             pcb_route_hints?: PCBRouteHintPoint[]
           }
