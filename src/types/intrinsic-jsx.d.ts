@@ -86,8 +86,7 @@ declare global {
         CommonLayout & { children?: any }
       powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
-      group: Parameters<B.GroupBuilder["setSourceProperties"]>[0] &
-        CommonLayout & { children?: any }
+      group: CommonLayout & { children?: any; auto_schematic_layout?: boolean }
       trace:
         | {
             path: string[]
