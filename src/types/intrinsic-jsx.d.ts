@@ -82,7 +82,7 @@ declare global {
         to_layer: B.LayerRef
       }
       netalias: Parameters<B.NetAliasBuilder["setSourceProperties"]>[0] &
-        CommonLayout & { children?: any }
+        CommonLayout & { net?: string; children?: any }
       ground: Parameters<B.GroundBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
       powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
