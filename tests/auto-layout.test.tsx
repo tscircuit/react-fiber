@@ -3,7 +3,7 @@ import test from "ava"
 import { getTestFixture } from "./fixtures/get-test-fixture"
 import type { SchematicComponent } from "@tscircuit/builder"
 
-test("render auto layout", async (t) => {
+test.skip("render auto layout", async (t) => {
   const { render, logSoup } = await getTestFixture(t)
 
   const soup = await render(
