@@ -33,8 +33,9 @@ declare global {
       board: {
         width: Dimension
         height: Dimension
-        center_x: Dimension
-        center_y: Dimension
+        center_x?: Dimension
+        center_y?: Dimension
+        auto_schematic_layout?: boolean
         children?: any
       }
       custom: any
