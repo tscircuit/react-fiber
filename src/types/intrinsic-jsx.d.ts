@@ -8,6 +8,7 @@ import {
   CommonLayout,
   RelativeDirection,
 } from "./positions"
+import type { LayoutBuilder } from "@tscircuit/layout"
 import { ReactNode } from "react"
 
 type ExplicitPinSideDefinition = {
@@ -87,7 +88,12 @@ declare global {
         CommonLayout & { children?: any }
       powersource: Parameters<B.PowerSourceBuilder["setSourceProperties"]>[0] &
         CommonLayout & { children?: any }
-      group: CommonLayout & { children?: any; auto_schematic_layout?: boolean }
+      group: CommonLayout & {
+        children?: any
+        auto_schematic_layout?: boolean
+        manual_layout?: B.ManualLayout
+        layout?: LayoutBuilder
+      }
       trace:
         | {
             path: string[]
