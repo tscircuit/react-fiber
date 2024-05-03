@@ -37,6 +37,8 @@ declare global {
         center_x?: Dimension
         center_y?: Dimension
         auto_schematic_layout?: boolean
+        manual_layout?: B.ManualLayout
+        layout?: LayoutBuilder
         children?: any
       }
       custom: any
