@@ -19,7 +19,10 @@
       "lib/*": ["src/lib/*"],
       "types/*": ["src/types/*"],
     },
+    "types": [
+      "./src/types/intrinsic-jsx.d.ts"
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.test.tsx", "**/*.d.ts","src/types/instrinsic-jsx.d.ts", "tests/simple-resistor.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.test.tsx", "**/*.d.ts","src/types/instrinsic-jsx.d.ts", "tests/simple-resistor.tsx", "src/component-hooks/index.tsx"],
   "exclude": ["node_modules"]
 }
