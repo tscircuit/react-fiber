@@ -15,7 +15,9 @@ export const common_layout_props = z.object({
 
 export const supplier_props = z.object({})
 
-export const resistor_props = z.object({
+export const resistor_props = common_layout_props.extend({
   name: z.string(),
   resistance: z.string(),
 })
+
+export const capacitor_props = z.object({})
