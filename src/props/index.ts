@@ -140,8 +140,8 @@ export type BugProps = z.input<typeof bug_props>
 export const via_props = common_layout_props.extend({
   fromLayer: layer_ref,
   toLayer: layer_ref,
-  hole_diameter: distance,
-  outer_diameter: distance,
+  holeDiameter: distance,
+  outerDiameter: distance,
 })
 export type ViaProps = z.input<typeof via_props>
 

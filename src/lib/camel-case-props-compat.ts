@@ -16,15 +16,27 @@ export const camelCasePropsCompat = (type: string, props: any) => {
   if ("pcbCenterY" in props) {
     props.center_y = props.pcbCenterY
   }
+  if ("schRotation" in props) {
+    props.rotation = props.schRotation
+  }
 
-  // TODO
+  if ("pinLabels" in props) {
+    props.port_labels = props.pinLabels
+  }
 
   // Convert camelCase props to snake_case for builder
-  for (const prop of props) {
-    const snakeCaseProp = toSnakeCase(prop)
-    if (snakeCaseProp !== prop) {
-      props[snakeCaseProp] = props[prop]
-      delete props[prop]
+  function deepConvertCamelCase(obj: Object) {
+    for (const prop in obj) {
+      const snakeCaseProp = toSnakeCase(prop)
+      if (snakeCaseProp !== prop) {
+        obj[snakeCaseProp] = obj[prop]
+        delete obj[prop]
+      }
+      if (typeof obj[snakeCaseProp] === "object") {
+        deepConvertCamelCase(obj[snakeCaseProp])
+      }
     }
   }
+
+  deepConvertCamelCase(props)
 }
