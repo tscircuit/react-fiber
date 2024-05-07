@@ -45,6 +45,8 @@ declare global {
       platedhole: Props.PlatedHoleProps
       hole: Props.HoleProps
       port: Props.PortProps
+      custom: any
+      component: Props.ComponentProps
     }
   }
 }
