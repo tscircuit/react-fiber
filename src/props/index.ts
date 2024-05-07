@@ -41,7 +41,7 @@ export const common_layout_props = z.object({
 })
 
 export const supplier_props = z.object({
-  supplierPartNumbers: z.record(supplier_name, z.array(z.string())),
+  supplierPartNumbers: z.record(supplier_name, z.array(z.string())).optional(),
 })
 
 export const common_component_props = common_layout_props
@@ -53,6 +53,7 @@ export const common_component_props = common_layout_props
 export const resistor_props = common_component_props.extend({
   resistance,
 })
+export const resistor_pins = ["pin1", "left", "pin2", "right"] as const
 
 export const capacitor_props = common_component_props.extend({
   capacitance,

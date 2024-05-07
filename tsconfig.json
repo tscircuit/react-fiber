@@ -23,6 +23,6 @@
       "./src/types/intrinsic-jsx.d.ts"
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.test.tsx", "**/*.d.ts","src/types/instrinsic-jsx.d.ts", "tests/simple-resistor.tsx", "src/component-hooks/index.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.test.tsx", "**/*.d.ts","src/types/instrinsic-jsx.d.ts", "tests/simple-resistor.tsx", "src/component-hooks/index.tsx", "src/component-hooks/use-resistor.tsx"],
   "exclude": ["node_modules"]
 }
