@@ -8,9 +8,13 @@ import {
   capacitance,
   inductance,
   point,
+  voltage,
 } from "@tscircuit/soup"
 import { ReactElement, ReactNode } from "react"
 import { pcb_route_hint, StandardFootprint } from "@tscircuit/builder"
+import { LayoutBuilder } from "@tscircuit/layout"
+
+export const direction = z.enum(["up", "down", "left", "right"])
 
 export const relative_direction = z.enum([
   "top-to-bottom",
@@ -60,6 +64,7 @@ export const common_component_props = common_layout_props
   .merge(supplier_props)
   .extend({
     name: z.string(),
+    children: z.any().optional(),
   })
 export type CommonComponentProps = z.input<typeof common_component_props>
 
@@ -175,3 +180,91 @@ export const smt_pad_props = z.union([
   }),
 ])
 export type SmtPadProps = z.input<typeof smt_pad_props>
+
+export const plated_hole_props = pcb_layout_props
+  .omit({ pcbRotation: true })
+  .extend({
+    holeDiameter: distance,
+    outerDiameter: distance,
+  })
+export type PlatedHoleProps = z.input<typeof plated_hole_props>
+
+export const hole_props = pcb_layout_props.omit({ pcbRotation: true }).extend({
+  holeDiameter: distance,
+})
+export type HoleProps = z.input<typeof hole_props>
+
+export const schematic_box_props = z.object({
+  schX: distance,
+  schY: distance,
+  width: distance,
+  height: distance,
+})
+export type SchematicBoxProps = z.input<typeof schematic_box_props>
+
+export const schematic_text_props = z.object({
+  schX: distance,
+  schY: distance,
+  text: z.string(),
+})
+export type SchematicTextProps = z.input<typeof schematic_text_props>
+
+export const schematic_line_props = z.object({
+  x1: distance,
+  y1: distance,
+  x2: distance,
+  y2: distance,
+})
+export type SchematicLineProps = z.input<typeof schematic_line_props>
+
+export const schematic_path_props = z.object({
+  points: z.array(point),
+  isFilled: z.boolean().optional().default(false),
+  fillColor: z.enum(["red", "blue"]).optional(),
+})
+export type SchematicPathProps = z.input<typeof schematic_path_props>
+
+export const constraint_props = z.union([
+  z.object({
+    type: z.literal("xdist"),
+    dist: distance,
+    left: z.string(),
+    right: z.string(),
+  }),
+  z.object({
+    type: z.literal("ydist"),
+    dist: distance,
+    top: z.string(),
+    bottom: z.string(),
+  }),
+])
+export type ConstraintProps = z.input<typeof constraint_props>
+
+export const constrained_layout_props = z.object({})
+export type ConstrainedLayoutProps = z.input<typeof constrained_layout_props>
+
+export const footprint_props = z.object({})
+export type FootprintProps = z.input<typeof footprint_props>
+
+export const component_props = common_component_props
+export type ComponentProps = z.input<typeof component_props>
+
+export const group_props = common_layout_props.extend({
+  name: z.string().optional(),
+  layout: z.custom<LayoutBuilder>((v) => true).optional(),
+  children: z.any().optional(),
+})
+export type GroupProps = z.input<typeof group_props>
+
+export const power_source_props = z.object({
+  voltage,
+})
+export type PowerSourceProps = z.input<typeof power_source_props>
+
+export const port_props = common_layout_props.extend({
+  name: z.string(),
+  pin_number: z.number(),
+  aliases: z.array(z.string()).optional(),
+  direction: direction,
+})
+export type PortProps = z.input<typeof port_props>
