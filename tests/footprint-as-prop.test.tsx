@@ -15,7 +15,8 @@ export const FootprintDefUsage1 = () => {
           <smtpad shape="rect" x="1mm" y={0} width="2mm" height="2mm" />
         </footprint>
       }
-      center={[2, 1]}
+      schX={2}
+      schY={1}
     >
       {/* <smtpad pcb_cx={0} pcb_cy={0} />
       <smtpad pcb_cx={1} pcb_cy={0} /> */}

@@ -12,18 +12,6 @@ import type { LayoutBuilder } from "@tscircuit/layout"
 import { ReactNode } from "react"
 import type * as Props from "src/props"
 
-type ExplicitPinSideDefinition = {
-  pins: number[]
-  direction?: RelativeDirection
-}
-
-interface PCBRouteHintPoint {
-  x: string | number
-  y: string | number
-  via?: boolean
-  via_to_layer?: string
-}
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -47,6 +35,7 @@ declare global {
       port: Props.PortProps
       custom: any
       component: Props.ComponentProps
+      footprint: any
     }
   }
 }

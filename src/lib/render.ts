@@ -18,6 +18,7 @@ import {
 } from "./get-builder-for-type"
 import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from-props"
 import { removeNils } from "src/utils/removeNils"
+import { camelCasePropsCompat } from "./camel-case-props-compat"
 
 export type RootContainer = {}
 
@@ -61,6 +62,8 @@ export const hostConfig: HostConfig<
       return instance
     } else if (typeof type === "string") {
       const instance = getBuilderForType(type, rootContainer.project_builder)
+
+      camelCasePropsCompat(type, props)
 
       let footprint = props.footprint
       if (props.footprint && isValidElement(props.footprint)) {

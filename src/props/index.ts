@@ -102,7 +102,9 @@ export const diode_props = common_component_props.extend({})
 export const diode_pins = lr_polar_pins
 export type DiodeProps = z.input<typeof diode_props>
 
-export const led_props = common_component_props.extend({})
+export const led_props = common_component_props.extend({
+  color: z.string().optional(),
+})
 export const led_pins = lr_polar_pins
 export type LedProps = z.input<typeof led_props>
 
