@@ -34,6 +34,17 @@ declare global {
       led: Props.LedProps
       board: Props.BoardProps
       bug: Props.BugProps
+      powersource: Props.PowerSourceProps
+      ground: Props.GroundProps
+      via: Props.ViaProps
+      schematicbox: Props.SchematicBoxProps
+      schematicline: Props.SchematicLineProps
+      schematicpath: Props.SchematicPathProps
+      schematictext: Props.SchematicTextProps
+      smtpad: Props.SmtPadProps
+      platedhole: Props.PlatedHoleProps
+      hole: Props.HoleProps
+      port: Props.PortProps
     }
   }
 }
