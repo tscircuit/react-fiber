@@ -50,34 +50,50 @@ export const common_component_props = common_layout_props
     name: z.string(),
   })
 
+export const lr_pins = ["pin1", "left", "pin2", "right"] as const
+export const lr_polar_pins = [
+  "pin1",
+  "left",
+  "anode",
+  "pos",
+  "pin2",
+  "right",
+  "cathode",
+  "neg",
+] as const
+
 export const resistor_props = common_component_props.extend({
   resistance,
 })
-export const resistor_pins = ["pin1", "left", "pin2", "right"] as const
+export const resistor_pins = lr_pins
 
 export const capacitor_props = common_component_props.extend({
   capacitance,
 })
+export const capacitor_pins = lr_polar_pins
 
 export const inductor_props = common_component_props.extend({
   inductance,
 })
+export const inductor_pins = lr_pins
 
 export const diode_props = common_component_props.extend({})
+export const diode_pins = lr_polar_pins
 
 export const led_props = common_component_props.extend({})
+export const led_pins = lr_polar_pins
 
 export const board_props = z.object({
   width: distance,
   height: distance,
-  centerX: distance.optional().default(0),
-  centerY: distance.optional().default(0),
+  pcbCenterX: distance.optional().default(0),
+  pcbCenterY: distance.optional().default(0),
   layout: z.any().optional(),
 })
 
 export const bug_props = common_component_props.extend({
-  portLabels: z.record(z.number(), z.string()),
-  portArrangement: z
+  pinLabels: z.record(z.number(), z.string()),
+  schPortArrangement: z
     .object({
       leftSize: z.number().optional(),
       topSize: z.number().optional(),
