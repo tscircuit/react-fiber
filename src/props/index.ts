@@ -8,6 +8,8 @@ import {
   capacitance,
   inductance,
 } from "@tscircuit/soup"
+import { ReactElement, ReactNode } from "react"
+import { StandardFootprint } from "@tscircuit/builder"
 
 export const relative_direction = z.enum([
   "top-to-bottom",
@@ -26,6 +28,7 @@ export const explicit_pin_side_definition = z.object({
   ]),
 })
 
+type Footprint = StandardFootprint | ReactElement
 export const common_layout_props = z.object({
   pcbX: distance.optional(),
   pcbY: distance.optional(),
@@ -37,7 +40,7 @@ export const common_layout_props = z.object({
 
   // TODO pull in literals from @tscircuit/footprint
   // TODO footprint can be a string or react child
-  footprint: z.any().optional(),
+  footprint: z.custom<Footprint>((v) => true).optional(),
 })
 
 export const supplier_props = z.object({

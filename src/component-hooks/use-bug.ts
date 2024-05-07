@@ -1,41 +1,28 @@
 import { z } from "zod"
 import { bug_props } from "src/props"
+import { createUseComponentWithZod } from "./create-use-component-with-zod"
 
-function useBug<
-  LS extends number,
-  TS extends number,
-  RS extends number,
-  BS extends number
->(
+export function useBug<PN extends number, PL extends string>(
   name: string,
-  props: Omit<z.input<typeof bug_props>, "name" | "schPortArrangement"> & {
-    schPortArrangement: {
-      leftSize?: LS
-      topSize?: TS
-      rightSize?: RS
-      bottomSize?: BS
+  props: Omit<z.input<typeof bug_props>, "name" | "pinLabels"> & {
+    pinLabels: {
+      [pinNum in PN]: PL
     }
   }
-): React.ComponentType<{
-  name: string
-  portLabels: Record<number, string>
-  schPortArrangement: {
-    leftSize?: LS | undefined
-    topSize?: TS | undefined
-    rightSize?: RS | undefined
-    bottomSize?: BS | undefined
-  }
-}>
-
-function useBug(name, props) {
-  return null as any
-}
-
-const MyCircuit = () => {
-  const U1 = useBug("U1", {
-    schPortArrangement: {
-      leftSize: 3,
-      rightSize: 2,
-    },
-  })
+): React.ComponentType<
+  Partial<
+    Omit<z.input<typeof bug_props>, "name" | "pinLabels"> & {
+      [K in PL | `pin${PN}`]: string
+    }
+  >
+> & {
+  [K in PL | `pin${PN}`]: string
+} {
+  return createUseComponentWithZod(
+    "bug",
+    bug_props,
+    Object.keys(props.pinLabels)
+      .map((pinNum) => `pin${pinNum}`)
+      .concat(Object.values(props.pinLabels))
+  )(name, bug_props as any) as any
 }
