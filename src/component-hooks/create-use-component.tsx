@@ -1,6 +1,6 @@
 import React, { Component, ComponentProps } from "react"
 import { z } from "zod"
-import { resistor_props, resistor_pins } from "../props"
+import { resistorProps, resistorPins } from "../props"
 
 export const createUseComponent = <
   C extends React.ComponentType<any>,

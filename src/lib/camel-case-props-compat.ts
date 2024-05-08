@@ -20,6 +20,11 @@ export const camelCasePropsCompat = (type: string, props: any) => {
     props.rotation = props.schRotation
   }
 
+  // TODO remove once builder supports direction (instead of dir)
+  if ("dir" in props) {
+    props.direction = props.dir
+  }
+
   if ("pinLabels" in props) {
     props.port_labels = props.pinLabels
   }

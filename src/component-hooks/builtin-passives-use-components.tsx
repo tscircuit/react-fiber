@@ -3,30 +3,30 @@ import { createUseComponentWithZod } from "./create-use-component-with-zod"
 
 export const useResistor = createUseComponentWithZod(
   "resistor",
-  Props.resistor_props,
-  Props.resistor_pins
+  Props.resistorProps,
+  Props.resistorPins
 )
 
 export const useCapacitor = createUseComponentWithZod(
   "capacitor",
-  Props.capacitor_props,
-  Props.capacitor_pins
+  Props.capacitorProps,
+  Props.capacitorPins
 )
 
 export const useInductor = createUseComponentWithZod(
   "inductor",
-  Props.inductor_props,
-  Props.inductor_pins
+  Props.inductorProps,
+  Props.inductorPins
 )
 
 export const useDiode = createUseComponentWithZod(
   "diode",
-  Props.diode_props,
-  Props.diode_pins
+  Props.diodeProps,
+  Props.diodePins
 )
 
 export const useLed = createUseComponentWithZod(
   "led",
-  Props.led_props,
-  Props.led_pins
+  Props.ledProps,
+  Props.ledPins
 )

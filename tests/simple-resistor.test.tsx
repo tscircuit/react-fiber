@@ -11,10 +11,10 @@ const ExampleCircuit = () => {
       <resistor
         name="R1"
         footprint="0402"
-        x={0}
-        y={0}
-        pcb_x="2mm"
-        pcb_y={0}
+        schX={0}
+        schY={0}
+        pcbX="2mm"
+        pcbY={0}
         resistance="10kohm"
       />
     </group>

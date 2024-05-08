@@ -33,6 +33,8 @@ declare global {
       platedhole: Props.PlatedHoleProps
       hole: Props.HoleProps
       port: Props.PortProps
+      group: Props.GroupProps
+      netalias: Props.NetAliasProps
       custom: any
       component: Props.ComponentProps
       footprint: any

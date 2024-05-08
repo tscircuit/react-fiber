@@ -1,17 +1,17 @@
 import { z } from "zod"
-import { bug_props } from "src/props"
+import { bugProps } from "src/props"
 import { createUseComponentWithZod } from "./create-use-component-with-zod"
 
 export function useBug<PN extends number, PL extends string>(
   name: string,
-  props: Omit<z.input<typeof bug_props>, "name" | "pinLabels"> & {
+  props: Omit<z.input<typeof bugProps>, "name" | "pinLabels"> & {
     pinLabels: {
       [pinNum in PN]: PL
     }
   }
 ): React.ComponentType<
   Partial<
-    Omit<z.input<typeof bug_props>, "name" | "pinLabels"> & {
+    Omit<z.input<typeof bugProps>, "name" | "pinLabels"> & {
       [K in PL | `pin${PN}`]: string
     }
   >
@@ -20,9 +20,9 @@ export function useBug<PN extends number, PL extends string>(
 } {
   return createUseComponentWithZod(
     "bug",
-    bug_props,
+    bugProps,
     Object.keys(props.pinLabels)
       .map((pinNum) => `pin${pinNum}`)
       .concat(Object.values(props.pinLabels))
-  )(name, bug_props as any) as any
+  )(name, bugProps as any) as any
 }

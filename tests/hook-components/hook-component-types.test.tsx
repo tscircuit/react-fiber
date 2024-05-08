@@ -5,7 +5,7 @@ import {
   createUseComponentWithZod,
   useResistor,
 } from "src/component-hooks"
-import { resistor_pins, resistor_props } from "src/props"
+import { resistorPins, resistorProps } from "src/props"
 
 const SomeComponent = (props: { name: string; someprop: number }) => {
   return <resistor resistance={props.someprop} name={props.name} />
@@ -13,8 +13,8 @@ const SomeComponent = (props: { name: string; someprop: number }) => {
 
 const useResistor2 = createUseComponentWithZod(
   "resistor",
-  resistor_props,
-  resistor_pins
+  resistorProps,
+  resistorPins
 )
 const useResistor3 = createUseComponent(SomeComponent, ["left", "right"])
 
