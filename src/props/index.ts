@@ -271,3 +271,23 @@ export const portProps = commonLayoutProps.extend({
   direction: direction,
 })
 export type PortProps = z.input<typeof portProps>
+
+export const silkscreenTextProps = pcbLayoutProps.extend({
+  text: z.string(),
+  font: z.enum(["tscircuit2024"]).optional(),
+})
+export type SilkscreenTextProps = z.input<typeof silkscreenTextProps>
+
+export const silkscreenPathProps = pcbLayoutProps.extend({
+  route: z.array(pcb_route_hint),
+})
+export type SilkscreenPathProps = z.input<typeof silkscreenPathProps>
+
+export const silkscreenLineProps = pcbLayoutProps.extend({
+  strokeWidth: distance,
+  x1: distance,
+  y1: distance,
+  x2: distance,
+  y2: distance,
+})
+export type silkscreenLineProps = z.input<typeof silkscreenLineProps>

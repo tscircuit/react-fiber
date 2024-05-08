@@ -39,6 +39,9 @@ declare global {
       custom: any
       component: Props.ComponentProps
       footprint: any
+      silkscreentext: Props.SilkscreenTextProps
+      silkscreenpath: Props.SilkscreenPathProps
+      silkscreenline: Props.SilkscreenLineProps
     }
   }
 }
