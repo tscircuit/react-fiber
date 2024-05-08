@@ -71,7 +71,10 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
       if (prop === "children") continue
       if (prop === "footprint") continue
       if (obj[prop]?.["$$typeof"]) continue
-      const snakeCaseProp = toSnakeCase(prop)
+      const snakeCaseProp = toSnakeCase(prop).replace(
+        /_([0-9]+)/g,
+        (match, p1) => p1
+      )
       if (snakeCaseProp !== prop) {
         obj[snakeCaseProp] = obj[prop]
         delete obj[prop]
