@@ -71,21 +71,27 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
       if (prop === "children") continue
       if (prop === "footprint") continue
       if (obj[prop]?.["$$typeof"]) continue
-      const snakeCaseProp = toSnakeCase(prop).replace(
+      const snakeCasePropV1 = toSnakeCase(prop)
+      const snakeCasePropV2 = snakeCasePropV1.replace(
         /_([0-9]+)/g,
         (match, p1) => p1
       )
-      if (snakeCaseProp !== prop) {
-        obj[snakeCaseProp] = obj[prop]
+      if (snakeCasePropV1 !== prop) {
+        obj[snakeCasePropV1] = obj[prop]
+        obj[snakeCasePropV2] = obj[prop]
         delete obj[prop]
       }
-      if (typeof obj[snakeCaseProp] === "object") {
-        if (Array.isArray(obj[snakeCaseProp])) {
-          for (const item of obj[snakeCaseProp]) {
-            deepConvertSnakeCase(item)
+      for (const snakeCaseProp of snakeCasePropV1 !== snakeCasePropV2
+        ? [snakeCasePropV1, snakeCasePropV2]
+        : [snakeCasePropV1]) {
+        if (typeof obj[snakeCaseProp] === "object") {
+          if (Array.isArray(obj[snakeCaseProp])) {
+            for (const item of obj[snakeCaseProp]) {
+              deepConvertSnakeCase(item)
+            }
+          } else {
+            deepConvertSnakeCase(obj[snakeCaseProp])
           }
-        } else {
-          deepConvertSnakeCase(obj[snakeCaseProp])
         }
       }
     }
