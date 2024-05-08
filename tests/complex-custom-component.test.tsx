@@ -9,8 +9,8 @@ test("react fiber complex component", async (t) => {
   const result = await createRoot().render(
     <group>
       <component name="K">
-        <schematicbox x={0} y={0} width="5mm" height="5mm" />
-        <schematictext x={0} y={0} text="Complex Component" />
+        <schematicbox schX={0} schY={0} width="5mm" height="5mm" />
+        <schematictext schX={0} schY={0} text="Complex Component" />
         <schematicline x1={-0.1} y1={1} x2={0.1} y2={1} />
         <schematicpath
           points={[
@@ -27,16 +27,21 @@ test("react fiber complex component", async (t) => {
               y: 2,
             },
           ]}
-          is_filled
+          isFilled
         />
-        <port name="v1" x="2.5mm" y="-1mm" dir="right" />
-        <port name="v2" x="2.5mm" y="0mm" dir="right" />
-        <port name="gnd" x="2.5mm" y="1mm" dir="right" />
-        <platedhole x={0} y={0} hole_diameter="1mm" outer_diameter="2mm" />
-        <platedhole x="3mm" y={0} hole_diameter="1mm" outer_diameter="2mm" />
-        <smtpad x="6mm" y={0} width="3mm" height="3mm" shape="rect" />
+        <port name="v1" schX="2.5mm" schY="-1mm" direction="right" />
+        <port name="v2" schX="2.5mm" schY="0mm" direction="right" />
+        <port name="gnd" schX="2.5mm" schY="1mm" direction="right" />
+        <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+        <platedhole
+          pcbX="3mm"
+          pcbY={0}
+          holeDiameter="1mm"
+          outerDiameter="2mm"
+        />
+        <smtpad pcbX="6mm" pcbY={0} width="3mm" height="3mm" shape="rect" />
       </component>
-      <resistor name="R1" resistance="1k" x={"5mm"} y={0} />
+      <resistor name="R1" resistance="1k" schX={"5mm"} schY={0} />
       <trace from=".R1 > .left" to=".K > .v1" />
     </group>,
     pb

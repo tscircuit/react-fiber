@@ -6,24 +6,24 @@ import { logLayout } from "./utils/log-layout"
 import "types/intrinsic-jsx.d.ts"
 
 const Resistor = () => (
-  <component>
-    <platedhole x={0} y={0} hole_diameter="1mm" outer_diameter="2mm" />
-    <platedhole x="0.2in" y={0} hole_diameter="1mm" outer_diameter="2mm" />
-    <box x="1.5mm" y={0} width="2.5mm" height="3mm" />
+  <component name="R1">
+    <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+    <platedhole pcbX="0.2in" pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+    <schematicbox schX="1.5mm" schY={0} width="2.5mm" height="3mm" />
     <line x1="0mm" y1="0mm" x2="3mm" y2="0mm" />
-    <port name="l" x="0mm" y="0mm" dir="left" />
-    <port name="r" x="3mm" y="0mm" dir="right" />
+    <port name="l" schX="0mm" schY="0mm" direction="left" />
+    <port name="r" schX="3mm" schY="0mm" direction="right" />
   </component>
 )
 
 const Led = () => (
-  <component x="5mm" y="0mm" pcb_y="4mm" pcb_x="0mm">
-    <platedhole x={0} y={0} hole_diameter="1mm" outer_diameter="2mm" />
-    <platedhole x="0.2in" y={0} hole_diameter="1mm" outer_diameter="2mm" />
-    <box x="1.5mm" y={0} width="2.5mm" height="3mm" />
+  <component name="LED" schX="5mm" schY="0mm" pcbY="4mm" pcbX="0mm">
+    <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+    <platedhole pcbX="0.2in" pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+    <schematicbox schX="1.5mm" schY={0} width="2.5mm" height="3mm" />
     <line x1="0mm" y1="0mm" x2="3mm" y2="0mm" />
-    <port name="l" x="0mm" y="0mm" dir="left" />
-    <port name="r" x="3mm" y="0mm" dir="right" />
+    <port name="l" schX="0mm" schY="0mm" direction="left" />
+    <port name="r" schX="3mm" schY="0mm" direction="right" />
   </component>
 )
 

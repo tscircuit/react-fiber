@@ -2,12 +2,13 @@ import React from "react"
 import test from "ava"
 import { getTestFixture } from "./fixtures/get-test-fixture"
 import type { SchematicComponent } from "@tscircuit/builder"
+import { layout } from "@tscircuit/layout"
 
 test.skip("render auto layout", async (t) => {
   const { render, logSoup } = await getTestFixture(t)
 
   const soup = await render(
-    <group auto_schematic_layout>
+    <group layout={layout().autoLayoutSchematic()}>
       <resistor name="R1" resistance="10k" />
       <resistor name="R2" resistance="10k" />
       <resistor name="R3" resistance="10k" />

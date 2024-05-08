@@ -11,11 +11,12 @@ export const FootprintDefUsage1 = () => {
       resistance="10 ohm"
       footprint={
         <footprint>
-          <smtpad shape="rect" x={0} y={0} width="2mm" height="2mm" />
-          <smtpad shape="rect" x="1mm" y={0} width="2mm" height="2mm" />
+          <smtpad shape="rect" pcbX={0} pcbY={0} width="2mm" height="2mm" />
+          <smtpad shape="rect" pcbX="1mm" pcbY={0} width="2mm" height="2mm" />
         </footprint>
       }
-      center={[2, 1]}
+      schX={2}
+      schY={1}
     >
       {/* <smtpad pcb_cx={0} pcb_cy={0} />
       <smtpad pcb_cx={1} pcb_cy={0} /> */}
@@ -29,11 +30,12 @@ export const FootprintDefUsage2 = () => {
       resistance="10 ohm"
       footprint={
         <>
-          <smtpad shape="rect" x={0} y={0} width="2mm" height="2mm" />
-          <smtpad shape="rect" x="1mm" y={0} width="2mm" height="2mm" />
+          <smtpad shape="rect" pcbX={0} pcbY={0} width="2mm" height="2mm" />
+          <smtpad shape="rect" pcbX="1mm" pcbY={0} width="2mm" height="2mm" />
         </>
       }
-      center={[2, 1]}
+      schX={2}
+      schY={1}
     >
       {/* <smtpad pcb_cx={0} pcb_cy={0} />
       <smtpad pcb_cx={1} pcb_cy={0} /> */}
@@ -42,10 +44,10 @@ export const FootprintDefUsage2 = () => {
 }
 export const FootprintDefUsage3 = () => {
   return (
-    <resistor name="R1" resistance="10 ohm" center={[2, 1]}>
+    <resistor name="R1" resistance="10 ohm" schX={2} schY={1}>
       <footprint>
-        <smtpad shape="rect" x={0} y={0} width="2mm" height="2mm" />
-        <smtpad shape="rect" x="1mm" y={0} width="2mm" height="2mm" />
+        <smtpad shape="rect" pcbX={0} pcbY={0} width="2mm" height="2mm" />
+        <smtpad shape="rect" pcbX="1mm" pcbY={0} width="2mm" height="2mm" />
       </footprint>
     </resistor>
   )

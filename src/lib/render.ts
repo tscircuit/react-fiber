@@ -18,6 +18,7 @@ import {
 } from "./get-builder-for-type"
 import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from-props"
 import { removeNils } from "src/utils/removeNils"
+import { snakeCasePropsCompat } from "./snake-case-props-compat"
 
 export type RootContainer = {}
 
@@ -60,7 +61,12 @@ export const hostConfig: HostConfig<
       props.onAdd(instance)
       return instance
     } else if (typeof type === "string") {
-      const instance = getBuilderForType(type, rootContainer.project_builder)
+      const instance: any = getBuilderForType(
+        type,
+        rootContainer.project_builder
+      )
+
+      props = snakeCasePropsCompat(type, props)
 
       let footprint = props.footprint
       if (props.footprint && isValidElement(props.footprint)) {
@@ -101,18 +107,16 @@ export const hostConfig: HostConfig<
         }
       }
 
-      if ("setPosition" in instance && (props.x || props.y)) {
-        if (props.x === undefined || props.y === undefined) {
-          throw new Error("if defining x, must also define y and vice versa")
-        }
-        ;(instance as any).setPosition(props.x, props.y)
-      }
+      const setSchPositionFn =
+        instance.setPosition ?? instance.setSchematicCenter
 
-      if ("setSchematicCenter" in instance && (props.x || props.y)) {
-        if (props.x === undefined || props.y === undefined) {
-          throw new Error("if defining x, must also define y and vice versa")
+      if (setSchPositionFn && (props.schX || props.schY)) {
+        if (props.schX === undefined || props.schY === undefined) {
+          throw new Error(
+            "if defining schX, must also define schY and vice versa"
+          )
         }
-        ;(instance as any).setSchematicCenter(props.x, props.y)
+        ;(instance as any).setSchematicCenter(props.schX, props.schY)
       }
 
       // collect all the schematic properties together
