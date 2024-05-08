@@ -36,7 +36,7 @@
     "react": "*"
   },
   "dependencies": {
-    "@tscircuit/soup": "^0.0.4",
+    "@tscircuit/soup": "^0.0.7",
     "convert-case": "^0.1.0",
     "react-reconciler": "^0.29.0"
   }
