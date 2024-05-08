@@ -11,16 +11,18 @@ export const ExampleCircuit = () => {
         name="R1"
         resistance="10 ohm"
         footprint="0402"
-        center={[2, 1]}
+        schX={2}
+        schY={1}
       />
       <capacitor
         name="C1"
         capacitance="10 uF"
-        center={[4, 2]}
-        rotation="90deg"
+        schX={4}
+        schY={2}
+        schRotation="90deg"
         footprint="0402"
-        pcb_x="4mm"
-        pcb_y="2mm"
+        pcbX="4mm"
+        pcbY="2mm"
       />
       <trace path={[".R1 > port.right", ".C1 > port.left"]} />
     </Fragment>

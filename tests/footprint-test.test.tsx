@@ -52,11 +52,11 @@ const some_output = [
 test("render footprint", async (t) => {
   const pb = createProjectBuilder()
   const result = await createRoot().render(
-    <component>
+    <component name="U1">
       {some_output.map((s) => (
         <smtpad
-          x={s.center_x}
-          y={s.center_y}
+          pcbX={s.center_x}
+          pcbY={s.center_y}
           width={s.size_x}
           height={s.size_y}
           shape="rect"

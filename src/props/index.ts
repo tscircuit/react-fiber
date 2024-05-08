@@ -114,6 +114,7 @@ export const boardProps = z.object({
   pcbCenterX: distance.optional().default(0),
   pcbCenterY: distance.optional().default(0),
   layout: z.any().optional(),
+  children: z.any(),
 })
 export type BoardProps = z.input<typeof boardProps>
 
