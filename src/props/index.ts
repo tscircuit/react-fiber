@@ -38,7 +38,7 @@ export const pcbLayoutProps = z.object({
   pcbX: distance,
   pcbY: distance,
   pcbRotation: rotation,
-  layer: layer_ref,
+  layer: layer_ref.optional(),
 })
 export const commonLayoutProps = z.object({
   pcbX: distance.optional(),
