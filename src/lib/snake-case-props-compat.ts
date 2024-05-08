@@ -29,8 +29,13 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
     props.dir = props.direction
   }
 
-  if ("port_labels" in props) {
-    props.pinLabels = props.port_labels
+  if ("pinLabels" in props) {
+    props.port_labels = props.pinLabels
+  }
+
+  // TODO remove once builder supports pcb_port_arrangement
+  if ("schPortArrangement" in props) {
+    props.port_arrangement = props.schPortArrangement
   }
 
   // If it's a pcb component, add x/y
