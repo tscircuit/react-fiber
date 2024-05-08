@@ -23,7 +23,11 @@ export const createUseComponentWithZod = <
     [key in typeof pins[number]]: string
   } => {
     const R: any = (props2: any) => {
-      const combinedProps = propsDef.parse({ ...props, ...props2, name })
+      // TODO - currently this converts some props to strings but loses some
+      // nice data included with the strings, e.g. `10kohm` becomes 10000,
+      // which is fine except we'd like to display it as the user specified it
+      // const combinedProps = propsDef.parse({ ...props, ...props2, name })
+      const combinedProps = { ...props, ...props2, name }
       const tracesToCreate: any[] = []
       for (const portLabel of pins) {
         if (combinedProps[portLabel]) {
