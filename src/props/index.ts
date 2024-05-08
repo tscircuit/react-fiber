@@ -258,7 +258,7 @@ export const groupProps = commonLayoutProps.extend({
 })
 export type GroupProps = z.input<typeof groupProps>
 
-export const powerSourceProps = z.object({
+export const powerSourceProps = commonComponentProps.extend({
   voltage,
 })
 export type PowerSourceProps = z.input<typeof powerSourceProps>
