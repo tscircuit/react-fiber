@@ -23,7 +23,7 @@ export const createUseComponent = <
   } => {
     const R: any = (props2: any) => {
       props2.name = name
-      const combinedProps = propsDef.parse({ ...props, ...props2 })
+      const combinedProps = { ...props, ...props2 }
       const tracesToCreate: any[] = []
       for (const portLabel of pins) {
         if (combinedProps[portLabel]) {
