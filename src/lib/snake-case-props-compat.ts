@@ -42,6 +42,11 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
     props.position = { x: props.schX, y: props.schY }
   }
 
+  // TODO remove once builder supports sch_rotation
+  if ("schRotation" in props) {
+    props.rotation = props.schRotation
+  }
+
   // If it's a pcb component, add x/y
   if (type === "smtpad" || type === "platedhole" || type === "hole") {
     if ("pcbX" in props) {
