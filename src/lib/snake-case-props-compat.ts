@@ -38,6 +38,10 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
     props.port_arrangement = props.schPortArrangement
   }
 
+  if (type === "schematictext" && ("schX" in props || "schY" in props)) {
+    props.position = { x: props.schX, y: props.schY }
+  }
+
   // If it's a pcb component, add x/y
   if (type === "smtpad" || type === "platedhole" || type === "hole") {
     if ("pcbX" in props) {
