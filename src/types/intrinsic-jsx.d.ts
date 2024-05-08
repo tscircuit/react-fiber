@@ -35,6 +35,7 @@ declare global {
       port: Props.PortProps
       group: Props.GroupProps
       netalias: Props.NetAliasProps
+      trace: Props.TraceProps
       custom: any
       component: Props.ComponentProps
       footprint: any
