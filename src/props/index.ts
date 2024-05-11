@@ -9,6 +9,7 @@ import {
   inductance,
   point,
   voltage,
+  route_hint_point,
 } from "@tscircuit/soup"
 import { ReactElement, ReactNode } from "react"
 import { pcb_route_hint, StandardFootprint } from "@tscircuit/builder"
@@ -291,3 +292,12 @@ export const silkscreenLineProps = pcbLayoutProps.extend({
   y2: distance,
 })
 export type silkscreenLineProps = z.input<typeof silkscreenLineProps>
+
+export const traceHintProps = z.object({
+  for: z.string(),
+  order: z.number().optional(),
+  offset: route_hint_point.optional(),
+  offsets: z.array(route_hint_point).optional(),
+})
+
+export type TraceHintProps = z.input<typeof traceHintProps>
