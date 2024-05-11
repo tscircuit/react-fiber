@@ -36,6 +36,7 @@ export const builderTypeToInitializer = {
   schematictext: Builder.createSchematicTextBuilder,
   image: (Builder as any).createImageBuilder,
   constrainedlayout: Builder.createConstrainedLayoutBuilder,
+  tracehint: Builder.createTraceHintBuilder,
 }
 
 export type BuilderType = keyof typeof builderTypeToInitializer
