@@ -38,7 +38,7 @@ export type Footprint = StandardFootprint | ReactElement
 export const pcbLayoutProps = z.object({
   pcbX: distance,
   pcbY: distance,
-  pcbRotation: rotation,
+  pcbRotation: rotation.optional(),
   layer: layer_ref.optional(),
 })
 export const commonLayoutProps = z.object({
