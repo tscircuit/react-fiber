@@ -47,6 +47,12 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
     props.rotation = props.schRotation
   }
 
+  if (type === "board" && "pcbCenterX" in props) {
+    props.center_x = props.pcbCenterX
+  } else if (type === "board" && "center_y" in props) {
+    props.center_y = props.pcbCenterY
+  }
+
   // If it's a pcb component, add x/y
   if (type === "smtpad" || type === "platedhole" || type === "hole") {
     if ("pcbX" in props) {
