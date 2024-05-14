@@ -22,8 +22,7 @@ export const createUseComponent = <
     [key in typeof pins[number]]: string
   } => {
     const R: any = (props2: any) => {
-      props2.name = name
-      const combinedProps = { ...props, ...props2 }
+      const combinedProps = { ...props, ...props2, name }
       const tracesToCreate: any[] = []
       for (const portLabel of pins) {
         if (combinedProps[portLabel]) {
