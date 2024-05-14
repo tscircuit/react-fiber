@@ -49,7 +49,8 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
 
   if (type === "board" && "pcbCenterX" in props) {
     props.center_x = props.pcbCenterX
-  } else if (type === "board" && "pcbCenterY" in props) {
+  }
+  if (type === "board" && "pcbCenterY" in props) {
     props.center_y = props.pcbCenterY
   }
 
