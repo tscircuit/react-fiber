@@ -17,5 +17,7 @@ jobs:
         run: npm install
       - name: Run NPM Test
         run: npm run test
+      - name: Run build
+        run: npm run build
       - name: Module can be require'd
         run: node -e "require('.')"
