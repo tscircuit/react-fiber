@@ -85,7 +85,7 @@ export const snakeCasePropsCompat = (type: string, props: any) => {
       )
       if (snakeCasePropV1 !== prop) {
         obj[snakeCasePropV1] = obj[prop]
-        delete obj[prop]
+        // delete obj[prop]
         obj[snakeCasePropV2] = obj[snakeCasePropV1]
       }
       for (const snakeCaseProp of snakeCasePropV1 !== snakeCasePropV2
