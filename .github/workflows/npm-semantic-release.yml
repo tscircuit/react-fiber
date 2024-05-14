@@ -20,6 +20,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Make sure you can require
+        run: node -e "require('.')"
       - name: Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
