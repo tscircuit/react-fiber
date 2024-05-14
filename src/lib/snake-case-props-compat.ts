@@ -1,4 +1,4 @@
-import { toCamelCase, toSnakeCase } from "convert-case"
+import toSnakeCase from "to-snake-case"
 
 /**
  * Convert camel case props to snake case for builder

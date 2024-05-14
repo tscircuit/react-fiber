@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@tscircuit/soup": "^0.0.8",
-    "convert-case": "^0.1.0",
-    "react-reconciler": "^0.29.0"
+    "react-reconciler": "^0.29.0",
+    "to-snake-case": "^1.0.0"
   }
 }

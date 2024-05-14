@@ -177,7 +177,6 @@ export const hostConfig: HostConfig<
   },
   appendInitialChild(parent: any, child) {
     // throw new Error("appendInitialChild not implemented")
-    // console.log(child.build())
     parent.appendChild(child)
   },
   appendChild(parent, child) {

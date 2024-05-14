@@ -23,6 +23,5 @@ test("render higher order component, <resistor /> and <custom />", async (t) => 
     </HOC>,
     pb
   )
-  console.log(result)
   t.pass()
 })

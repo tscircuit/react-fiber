@@ -15,6 +15,5 @@ test("render higher order component, <resistor /> and <custom />", async (t) => 
   const port: any = result.find(
     (e) => e.type === "source_port" && e.source_component_id === "net_alias_0"
   )
-  console.log(port)
   t.is(port.name, "D0BUS")
 })
