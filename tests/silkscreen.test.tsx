@@ -3,6 +3,7 @@ import test from "ava"
 import { getTestFixture } from "./fixtures/get-test-fixture"
 import type { SchematicComponent } from "@tscircuit/builder"
 import { layout } from "@tscircuit/layout"
+import { PcbSilkscreenText } from "@tscircuit/soup"
 
 test("silkscreen text render", async (t) => {
   const { render, logSoup } = await getTestFixture(t)
@@ -28,7 +29,9 @@ test("silkscreen text render", async (t) => {
 
   await logSoup(soup)
 
-  const text = soup.find((s) => s.type === "pcb_silkscreen_text")
+  const text = soup.find(
+    (s) => s.type === "pcb_silkscreen_text"
+  ) as PcbSilkscreenText
 
   t.is(text?.text, "hello world")
 })

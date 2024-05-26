@@ -19,6 +19,7 @@ import {
 import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from-props"
 import { removeNils } from "src/utils/removeNils"
 import { snakeCasePropsCompat } from "./snake-case-props-compat"
+import { AnySoupElement } from "@tscircuit/soup"
 
 export type RootContainer = {}
 
@@ -295,7 +296,9 @@ export const createRoot = () => {
         null,
         callback
       )
-      return projectBuilder.build(projectBuilder.createBuildContext())
+      return projectBuilder.build(
+        projectBuilder.createBuildContext()
+      ) as any as Promise<AnySoupElement[]>
     },
   }
 }

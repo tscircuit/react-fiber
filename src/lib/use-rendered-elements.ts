@@ -17,7 +17,7 @@ export const useRenderedElements = (
     createRoot()
       .render(children, projectBuilder as any)
       .then((elements) => {
-        setElements(elements)
+        setElements(elements as any)
         setLoading(false)
       })
   }, [children])
