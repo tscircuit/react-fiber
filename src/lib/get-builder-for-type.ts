@@ -37,6 +37,11 @@ export const builderTypeToInitializer = {
   image: (Builder as any).createImageBuilder,
   constrainedlayout: Builder.createConstrainedLayoutBuilder,
   tracehint: Builder.createTraceHintBuilder,
+  silkscreenpath: Builder.createSilkscreenPathBuilder,
+  silkscreentext: Builder.createSilkscreenTextBuilder,
+  silkscreenline: Builder.createSilkscreenLineBuilder,
+  silkscreenrect: Builder.createSilkscreenRectBuilder,
+  silkscreencircle: Builder.createSilkscreenCircleBuilder,
 }
 
 export type BuilderType = keyof typeof builderTypeToInitializer
