@@ -43,7 +43,7 @@ declare global {
       silkscreentext: Props.SilkscreenTextProps
       silkscreenpath: Props.SilkscreenPathProps
       silkscreenline: Props.SilkscreenLineProps
-      silkscreenrect: Props.SilkscreenLineProps
+      silkscreenrect: Props.SilkscreenRectProps
       silkscreencircle: Props.SilkscreenCircleProps
       tracehint: LegacyProps.TraceHintProps
     }
