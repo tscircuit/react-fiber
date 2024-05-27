@@ -24,5 +24,5 @@ export function useBug<PN extends number, PL extends string>(
     Object.keys(props.pinLabels)
       .map((pinNum) => `pin${pinNum}`)
       .concat(Object.values(props.pinLabels))
-  )(name, bugProps as any) as any
+  )(name, props) as any
 }
