@@ -46,6 +46,7 @@ declare global {
       silkscreenrect: Props.SilkscreenRectProps
       silkscreencircle: Props.SilkscreenCircleProps
       tracehint: LegacyProps.TraceHintProps
+      pcbtrace: Props.PcbTraceProps
     }
   }
 }

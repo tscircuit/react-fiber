@@ -42,6 +42,7 @@ export const builderTypeToInitializer = {
   silkscreenline: Builder.createSilkscreenLineBuilder,
   silkscreenrect: Builder.createSilkscreenRectBuilder,
   silkscreencircle: Builder.createSilkscreenCircleBuilder,
+  pcbtrace: Builder.createBasicPcbTraceBuilder,
 }
 
 export type BuilderType = keyof typeof builderTypeToInitializer
