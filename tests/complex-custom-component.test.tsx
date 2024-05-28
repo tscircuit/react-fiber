@@ -40,7 +40,13 @@ test("react fiber complex component", async (t) => {
           outerDiameter="2mm"
         />
         <smtpad pcbX="6mm" pcbY={0} width="3mm" height="3mm" shape="rect" />
-        <pcbtrace />
+        <pcbtrace
+          route={[
+            { x: 0, y: 0 },
+            { x: 3, y: 0 },
+            { x: 6, y: 0 },
+          ]}
+        />
       </component>
       <resistor name="R1" resistance="1k" schX={"5mm"} schY={0} />
       <trace from=".R1 > .left" to=".K > .v1" />

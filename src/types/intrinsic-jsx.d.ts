@@ -16,36 +16,36 @@ import type * as Props from "@tscircuit/props"
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      resistor: LegacyProps.ResistorProps
-      capacitor: LegacyProps.CapacitorProps
-      inductor: LegacyProps.InductorProps
-      diode: LegacyProps.DiodeProps
-      led: LegacyProps.LedProps
-      board: LegacyProps.BoardProps
-      bug: LegacyProps.BugProps
-      powersource: LegacyProps.PowerSourceProps
-      ground: LegacyProps.GroundProps
-      via: LegacyProps.ViaProps
-      schematicbox: LegacyProps.SchematicBoxProps
-      schematicline: LegacyProps.SchematicLineProps
-      schematicpath: LegacyProps.SchematicPathProps
-      schematictext: LegacyProps.SchematicTextProps
-      smtpad: LegacyProps.SmtPadProps
-      platedhole: LegacyProps.PlatedHoleProps
-      hole: LegacyProps.HoleProps
-      port: LegacyProps.PortProps
-      group: LegacyProps.GroupProps
-      netalias: LegacyProps.NetAliasProps
-      trace: LegacyProps.TraceProps
+      resistor: Props.ResistorProps
+      capacitor: Props.CapacitorProps
+      inductor: Props.InductorProps
+      diode: Props.DiodeProps
+      led: Props.LedProps
+      board: Props.BoardProps
+      bug: Props.BugProps
+      powersource: Props.PowerSourceProps
+      ground: Props.GroundProps
+      via: Props.ViaProps
+      schematicbox: Props.SchematicBoxProps
+      schematicline: Props.SchematicLineProps
+      schematicpath: Props.SchematicPathProps
+      schematictext: Props.SchematicTextProps
+      smtpad: Props.SmtPadProps
+      platedhole: Props.PlatedHoleProps
+      hole: Props.HoleProps
+      port: Props.PortProps
+      group: Props.GroupProps
+      netalias: Props.NetAliasProps
+      trace: Props.TraceProps
       custom: any
-      component: LegacyProps.ComponentProps
+      component: Props.ComponentProps
       footprint: any
       silkscreentext: Props.SilkscreenTextProps
       silkscreenpath: Props.SilkscreenPathProps
       silkscreenline: Props.SilkscreenLineProps
       silkscreenrect: Props.SilkscreenRectProps
       silkscreencircle: Props.SilkscreenCircleProps
-      tracehint: LegacyProps.TraceHintProps
+      tracehint: Props.TraceHintProps
       pcbtrace: Props.PcbTraceProps
     }
   }
