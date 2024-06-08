@@ -43,6 +43,10 @@ export const builderTypeToInitializer = {
   silkscreenrect: Builder.createSilkscreenRectBuilder,
   silkscreencircle: Builder.createSilkscreenCircleBuilder,
   pcbtrace: Builder.createBasicPcbTraceBuilder,
+  fabricationtext: Builder.createFabricationNoteTextBuilder,
+  fabricationnotetext: Builder.createFabricationNoteTextBuilder,
+  fabricationpath: Builder.createFabricationNotePathBuilder,
+  fabricationnotepath: Builder.createFabricationNotePathBuilder,
 }
 
 export type BuilderType = keyof typeof builderTypeToInitializer
@@ -52,7 +56,7 @@ export const getBuilderForType = (
   project_builder: Builder.ProjectBuilder
 ): Builder.ComponentBuilder | Builder.TraceBuilder | Builder.GroupBuilder => {
   if (!(type in builderTypeToInitializer)) {
-    throw new Error(`Unknown builder type: "${type}"`)
+    throw new Error(`Unknown builder type (@tscircuit/react-fiber): "${type}"`)
   }
   if (builderTypeToInitializer[type] === undefined) {
     throw new Error(`No initializer for builder type: "${type}"`)
