@@ -12,7 +12,7 @@ import {
   route_hint_point,
 } from "@tscircuit/soup"
 import { ReactElement, ReactNode } from "react"
-import { pcb_route_hint, StandardFootprint } from "@tscircuit/builder"
+import { pcb_route_hint } from "@tscircuit/builder"
 import { LayoutBuilder } from "@tscircuit/layout"
 
 export const direction = z.enum(["up", "down", "left", "right"])
@@ -34,7 +34,7 @@ export const explicitPinSideDefinition = z.object({
   ]),
 })
 
-export type Footprint = StandardFootprint | ReactElement
+export type Footprint = string | ReactElement
 export const pcbLayoutProps = z.object({
   pcbX: distance,
   pcbY: distance,

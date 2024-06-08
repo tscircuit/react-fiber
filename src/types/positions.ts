@@ -31,7 +31,7 @@ export interface PCBPosition {
   pcb_cx?: Dimension
   pcb_cy?: Dimension
   pcb_rotation?: string | number
-  footprint?: B.StandardFootprint | ReactElement
+  footprint?: string | ReactElement
   pcb_layer?: B.LayerRef
 }
 
