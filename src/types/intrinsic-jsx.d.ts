@@ -47,6 +47,8 @@ declare global {
       silkscreencircle: Props.SilkscreenCircleProps
       tracehint: Props.TraceHintProps
       pcbtrace: Props.PcbTraceProps
+      fabricationnotetext: Props.FabricationNoteTextProps
+      fabricationnotepath: Props.FabricationNotePathProps
     }
   }
 }
