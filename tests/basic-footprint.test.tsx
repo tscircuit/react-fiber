@@ -18,7 +18,7 @@ test("render footprint", async (t) => {
   t.pass()
 })
 
-test.only("render soup as footprint", async (t) => {
+test("render soup as footprint", async (t) => {
   const pb = createProjectBuilder()
   const result = await createRoot().render(
     <component
