@@ -70,7 +70,13 @@ export const hostConfig: HostConfig<
       props = snakeCasePropsCompat(type, props)
 
       let footprint = props.footprint
-      if (props.footprint && isValidElement(props.footprint)) {
+      if (props.footprint && Array.isArray(props.footprint)) {
+        const fb = createFootprintBuilder(rootContainer.project_builder)
+        ;(fb as any).createBuildContext =
+          rootContainer.project_builder.createBuildContext
+        fb.loadFootprintFromSoup(props.footprint)
+        footprint = fb
+      } else if (props.footprint && isValidElement(props.footprint)) {
         const fb = createFootprintBuilder(rootContainer.project_builder)
         ;(fb as any).createBuildContext =
           rootContainer.project_builder.createBuildContext
