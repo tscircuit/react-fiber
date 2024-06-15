@@ -16,7 +16,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
-    "@tscircuit/builder": "^1.5.116",
+    "@tscircuit/builder": "^1.5.121",
     "@tscircuit/layout": "^0.0.7",
     "@tscircuit/props": "^0.0.15",
     "@types/react-reconciler": "^0.28.0",
