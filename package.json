@@ -18,7 +18,7 @@
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@tscircuit/builder": "^1.5.116",
     "@tscircuit/layout": "^0.0.7",
-    "@tscircuit/props": "^0.0.12",
+    "@tscircuit/props": "^0.0.15",
     "@types/react-reconciler": "^0.28.0",
     "async-mutex": "^0.5.0",
     "ava": "^4.3.3",
@@ -38,7 +38,7 @@
     "react": "*"
   },
   "dependencies": {
-    "@tscircuit/soup": "^0.0.8",
+    "@tscircuit/soup": "^0.0.34",
     "react-reconciler": "^0.29.0",
     "to-snake-case": "^1.0.0"
   }
