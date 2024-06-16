@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { bugProps } from "src/props"
+import { bugProps } from "@tscircuit/props"
 import { createUseComponentWithZod } from "./create-use-component-with-zod"
 
 export function useBug<PN extends number, PL extends string>(

@@ -5,7 +5,7 @@ import {
   createUseComponentWithZod,
   useResistor,
 } from "src/component-hooks"
-import { resistorPins, resistorProps } from "src/props"
+import { resistorPins, resistorProps } from "@tscircuit/props"
 
 const SomeComponent = (props: { name: string; someprop: number }) => {
   return <resistor resistance={props.someprop} name={props.name} />

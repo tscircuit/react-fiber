@@ -21,17 +21,4 @@
     },
     "types": ["./src/types/intrinsic-jsx.d.ts"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.test.tsx",
-    "**/*.d.ts",
-    "src/types/instrinsic-jsx.d.ts",
-    "tests/simple-resistor.tsx",
-    "src/component-hooks/index.tsx",
-    "src/component-hooks/builtin-passives-use-components.tsx",
-    "src/component-hooks/create-use-component.tsx",
-    "src/component-hooks/create-use-component-with-zod.tsx"
-  ],
-  "exclude": ["node_modules"]
 }

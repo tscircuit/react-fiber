@@ -1,4 +1,4 @@
-import * as Props from "../props"
+import * as Props from "@tscircuit/props"
 import { createUseComponentWithZod } from "./create-use-component-with-zod"
 
 export const useResistor = createUseComponentWithZod(

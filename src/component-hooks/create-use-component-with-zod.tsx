@@ -1,6 +1,6 @@
 import React, { Component, ComponentProps } from "react"
 import { z } from "zod"
-import { resistorProps, resistorPins } from "../props"
+import { resistorProps, resistorPins } from "@tscircuit/props"
 
 export const createUseComponentWithZod = <
   PrD extends z.ZodObject<any, any, any>,
