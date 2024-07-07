@@ -19,6 +19,6 @@
       "lib/*": ["src/lib/*"],
       "types/*": ["src/types/*"]
     },
-    "types": ["./src/types/intrinsic-jsx.d.ts"]
+    "types": ["./src/types/intrinsic-jsx.d.ts", "@types/node"]
   },
 }

@@ -1,8 +1,8 @@
 import { createProjectBuilder } from "@tscircuit/builder"
 import { AnySoupElement } from "@tscircuit/soup"
 import { ExecutionContext } from "ava"
-import { logLayout } from "tests/utils/log-layout"
 import { createRoot } from "lib/render"
+import { logSoup } from "@tscircuit/log-soup"
 
 export const getTestFixture = (t: ExecutionContext) => {
   return {
@@ -12,7 +12,8 @@ export const getTestFixture = (t: ExecutionContext) => {
       return createRoot().render(elms, pb) as any as Promise<AnySoupElement[]>
     },
     logSoup: (soup: AnySoupElement[]) => {
-      return logLayout(t.title, soup)
+      if (process.env.CI) return
+      return logSoup(`react-fiber:${t.title}`, soup)
     },
   }
 }
