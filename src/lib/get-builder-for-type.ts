@@ -8,7 +8,7 @@ export const builderTypeToInitializer = {
   diode: Builder.createDiodeBuilder,
   led: Builder.createDiodeBuilder,
   ground: Builder.createGroundBuilder,
-  bug: Builder.createBugBuilder,
+  chip: Builder.createChipBuilder,
   powersource: Builder.createPowerSourceBuilder,
   netalias: Builder.createNetAliasBuilder,
   group: Builder.createGroupBuilder,

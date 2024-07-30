@@ -2,11 +2,11 @@ import test from "ava"
 import React from "react"
 import { getTestFixture } from "./fixtures/get-test-fixture"
 
-test("bug props", async (t) => {
+test("chip props", async (t) => {
   const { logSoup, render } = await getTestFixture(t)
 
   const soup = await render(
-    <bug
+    <chip
       schPinSpacing="1.5mm"
       name={"U1"}
       pinLabels={{

@@ -1,12 +1,12 @@
 import React from "react"
 import test from "ava"
-import { useBug } from "src/component-hooks"
+import { useChip } from "src/component-hooks"
 import { getTestFixture } from "tests/fixtures/get-test-fixture"
 import { su } from "@tscircuit/soup-util"
 
-test("useBug", async (t) => {
+test("useChip", async (t) => {
   const { render } = getTestFixture(t)
-  const U1 = useBug("U1", {
+  const U1 = useChip("U1", {
     pinLabels: {
       1: "GND" as const,
       2: "VCC",
@@ -28,5 +28,5 @@ test("useBug", async (t) => {
   t.truthy(<U1 pin1="..." OUT="..." />)
 
   const soup = await render(<U1 />)
-  t.is(su(soup).source_component.getWhere({ name: "U1" })!.ftype, "simple_bug")
+  t.is(su(soup).source_component.getWhere({ name: "U1" })!.ftype, "simple_chip")
 })
