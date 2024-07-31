@@ -6,4 +6,4 @@ export * from "./use-chip"
 /**
  * @deprecated Use exports from "./use-chip" instead. This will be removed in a future version.
  */
-export * as useBug from "./use-chip"
+export { useChip as useBug } from "./use-chip" 
