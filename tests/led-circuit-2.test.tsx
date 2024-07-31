@@ -42,7 +42,7 @@ export const ExampleCircuit = () => {
       <trace
         path={["power > port.negative", ".C1 > port.right", ".R2 > port.right"]}
       />
-      <bug
+      <chip
         name="B1"
         schPortArrangement={{ leftSize: 3, rightSize: 3 }}
         schX={8}

@@ -23,6 +23,7 @@ declare global {
       led: Props.LedProps
       board: Props.BoardProps
       bug: Props.BugProps
+      chip: Props.ChipProps 
       powersource: Props.PowerSourceProps
       ground: Props.GroundProps
       via: Props.ViaProps
