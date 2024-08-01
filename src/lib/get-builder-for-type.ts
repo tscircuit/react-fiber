@@ -9,7 +9,8 @@ export const builderTypeToInitializer = {
   led: Builder.createDiodeBuilder,
   ground: Builder.createGroundBuilder,
   bug: Builder.createBugBuilder,
-  chip: Builder.createChipBuilder,
+  // TODO remove once builder adds/renames to createChipBuilder
+  chip: (Builder as any).createChipBuilder ?? Builder.createBugBuilder,
   powersource: Builder.createPowerSourceBuilder,
   netalias: Builder.createNetAliasBuilder,
   group: Builder.createGroupBuilder,
@@ -54,7 +55,7 @@ export type BuilderType = keyof typeof builderTypeToInitializer
 
 export const getBuilderForType = (
   type: string,
-  project_builder: Builder.ProjectBuilder
+  project_builder: Builder.ProjectBuilder,
 ): Builder.ComponentBuilder | Builder.TraceBuilder | Builder.GroupBuilder => {
   if (!(type in builderTypeToInitializer)) {
     throw new Error(`Unknown builder type (@tscircuit/react-fiber): "${type}"`)
