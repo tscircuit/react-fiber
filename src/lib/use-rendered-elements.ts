@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react"
 import { createRoot } from "./render"
 import { AnyElement } from "@tscircuit/builder"
 
+/**
+ * @deprecated use useChildrenSoup instead (handles errors)
+ */
 export const useRenderedElements = (
-  children: React.ReactElement | React.ReactElement[]
+  children: React.ReactElement | React.ReactElement[],
 ) => {
   const [elements, setElements] = useState<Array<AnyElement>>([])
   const [loading, setLoading] = useState(true)
