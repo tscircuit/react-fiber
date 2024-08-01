@@ -23,7 +23,8 @@ declare global {
       led: Props.LedProps
       board: Props.BoardProps
       bug: Props.BugProps
-      chip: Props.ChipProps 
+      // TODO use ChipProps once it gets merged in @tscircuit/props
+      chip: Props.BugProps
       powersource: Props.PowerSourceProps
       ground: Props.GroundProps
       via: Props.ViaProps

@@ -32,8 +32,15 @@ test("react fiber complex component", async (t) => {
         <port name="v1" schX="2.5mm" schY="-1mm" direction="right" />
         <port name="v2" schX="2.5mm" schY="0mm" direction="right" />
         <port name="gnd" schX="2.5mm" schY="1mm" direction="right" />
-        <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
         <platedhole
+          shape="circle"
+          pcbX={0}
+          pcbY={0}
+          holeDiameter="1mm"
+          outerDiameter="2mm"
+        />
+        <platedhole
+          shape="circle"
           pcbX="3mm"
           pcbY={0}
           holeDiameter="1mm"
@@ -51,7 +58,7 @@ test("react fiber complex component", async (t) => {
       <resistor name="R1" resistance="1k" schX={"5mm"} schY={0} />
       <trace from=".R1 > .left" to=".K > .v1" />
     </group>,
-    pb
+    pb,
   )
 
   await logLayout("react-fiber complex component", result)

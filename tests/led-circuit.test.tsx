@@ -7,8 +7,20 @@ import "types/intrinsic-jsx.d.ts"
 
 const Resistor = () => (
   <component name="R1">
-    <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
-    <platedhole pcbX="0.2in" pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+    <platedhole
+      pcbX={0}
+      pcbY={0}
+      shape="circle"
+      holeDiameter="1mm"
+      outerDiameter="2mm"
+    />
+    <platedhole
+      pcbX="0.2in"
+      pcbY={0}
+      shape="circle"
+      holeDiameter="1mm"
+      outerDiameter="2mm"
+    />
     <schematicbox schX="1.5mm" schY={0} width="2.5mm" height="3mm" />
     <line x1="0mm" y1="0mm" x2="3mm" y2="0mm" />
     <port name="l" schX="0mm" schY="0mm" direction="left" />
@@ -18,8 +30,20 @@ const Resistor = () => (
 
 const Led = () => (
   <component name="LED" schX="5mm" schY="0mm" pcbY="4mm" pcbX="0mm">
-    <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
-    <platedhole pcbX="0.2in" pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+    <platedhole
+      pcbX={0}
+      pcbY={0}
+      shape="circle"
+      holeDiameter="1mm"
+      outerDiameter="2mm"
+    />
+    <platedhole
+      pcbX="0.2in"
+      pcbY={0}
+      shape="circle"
+      holeDiameter="1mm"
+      outerDiameter="2mm"
+    />
     <schematicbox schX="1.5mm" schY={0} width="2.5mm" height="3mm" />
     <line x1="0mm" y1="0mm" x2="3mm" y2="0mm" />
     <port name="l" schX="0mm" schY="0mm" direction="left" />

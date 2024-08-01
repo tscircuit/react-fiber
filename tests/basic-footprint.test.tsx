@@ -8,11 +8,23 @@ test("render footprint", async (t) => {
   const pb = createProjectBuilder()
   const result = await createRoot().render(
     <component name="C1">
-      <platedhole pcbX={0} pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
-      <platedhole pcbX="3mm" pcbY={0} holeDiameter="1mm" outerDiameter="2mm" />
+      <platedhole
+        shape="circle"
+        pcbX={0}
+        pcbY={0}
+        holeDiameter="1mm"
+        outerDiameter="2mm"
+      />
+      <platedhole
+        shape="circle"
+        pcbX="3mm"
+        pcbY={0}
+        holeDiameter="1mm"
+        outerDiameter="2mm"
+      />
       <smtpad pcbX="6mm" pcbY={0} width="3mm" height="3mm" shape="rect" />
     </component>,
-    pb
+    pb,
   )
   await logLayout("test footprint react-fiber", result)
   t.pass()
@@ -38,7 +50,7 @@ test("render soup as footprint", async (t) => {
         },
       ]}
     />,
-    pb
+    pb,
   )
   await logLayout("render soup as footprint", result)
   t.pass()

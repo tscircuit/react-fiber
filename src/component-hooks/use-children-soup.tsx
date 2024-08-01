@@ -1,5 +1,6 @@
 import { createRoot } from "lib/render"
-import { AnySoupElement, createProjectBuilder } from "@tscircuit/builder"
+import type { AnySoupElement } from "@tscircuit/soup"
+import { createProjectBuilder } from "@tscircuit/builder"
 import { useEffect, useState } from "react"
 
 /**

@@ -16,6 +16,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@testing-library/react": "^16.0.0",
     "@tscircuit/builder": "^1.5.136",
     "@tscircuit/layout": "^0.0.7",
     "@tscircuit/log-soup": "^1.0.2",
