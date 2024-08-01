@@ -3,6 +3,7 @@ import test from "ava"
 import { createRoot } from "lib/render"
 import { createProjectBuilder } from "@tscircuit/builder"
 import { logLayout } from "./utils/log-layout"
+import { su } from "@tscircuit/soup-util"
 
 test("render footprint", async (t) => {
   const pb = createProjectBuilder()
@@ -26,6 +27,14 @@ test("render footprint", async (t) => {
     </component>,
     pb,
   )
+
+  const [h1, h2] = su(result).pcb_plated_hole.list()
+
+  t.is(h1.hole_diameter, 1)
+  t.is(h2.hole_diameter, 1)
+  t.is(h1.outer_diameter, 2)
+  t.is(h2.outer_diameter, 2)
+
   await logLayout("test footprint react-fiber", result)
   t.pass()
 })
