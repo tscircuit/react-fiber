@@ -96,7 +96,7 @@ export const hostConfig: HostConfig<
           const jscadElms: any[] = []
           const root = renderer.createJSCADRoot(jscadElms)
           root.render((cadModel as any).props.children)
-          cadModel = jscadElms
+          cadModel = { jscad: jscadElms }
         } else {
           throw new Error(
             `Unrecognized React component given as cadModel, must be "cad" or "jscad"`,

@@ -20,7 +20,7 @@ test("<jscad /> as cadModel", async (t) => {
   )
 
   const [cad_component] = su(soup).cad_component.list()
-  console.log(cad_component)
+  t.deepEqual(cad_component.model_jscad, [{ type: "cube", size: 10 }])
 })
 
 // test("<jscad /> as child of <chip />", async (t) => {
