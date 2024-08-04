@@ -16,10 +16,10 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
-    "@tscircuit/builder": "^1.5.136",
+    "@tscircuit/builder": "^1.9.0",
     "@tscircuit/layout": "^0.0.7",
     "@tscircuit/log-soup": "^1.0.2",
-    "@tscircuit/props": "^0.0.17",
+    "@tscircuit/props": "^0.0.26",
     "@types/node": "^20.14.10",
     "@types/react-reconciler": "^0.28.0",
     "async-mutex": "^0.5.0",
@@ -40,7 +40,9 @@
     "react": "*"
   },
   "dependencies": {
-    "@tscircuit/soup": "^0.0.34",
+    "@tscircuit/soup": "^0.0.47",
+    "jscad-fiber": "^0.0.40",
+    "jscad-planner": "^0.0.2",
     "react-reconciler": "^0.29.0",
     "to-snake-case": "^1.0.0"
   }

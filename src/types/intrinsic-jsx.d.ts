@@ -51,6 +51,7 @@ declare global {
       pcbtrace: Props.PcbTraceProps
       fabricationnotetext: Props.FabricationNoteTextProps
       fabricationnotepath: Props.FabricationNotePathProps
+      jscad: any
     }
   }
 }

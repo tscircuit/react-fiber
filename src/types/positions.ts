@@ -1,5 +1,5 @@
-import type * as B from "@tscircuit/builder"
 import { ReactElement } from "react"
+import type { LayerRef } from "@tscircuit/soup"
 
 export type Dimension = number | string
 export type Point = [number, number] | { x: number; y: number }
@@ -32,11 +32,11 @@ export interface PCBPosition {
   pcb_cy?: Dimension
   pcb_rotation?: string | number
   footprint?: string | ReactElement
-  pcb_layer?: B.LayerRef
+  pcb_layer?: LayerRef
 }
 
 export interface BomProps {
-  supplier_part_numbers?: Partial<Record<B.SupplierName, string[] | string>>
+  supplier_part_numbers?: Partial<Record<string, string[] | string>>
 }
 
 const a: PCBPosition = {

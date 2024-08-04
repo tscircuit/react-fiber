@@ -20,6 +20,8 @@ import { getSchematicPropertiesFromProps } from "./get-schematic-properties-from
 import { removeNils } from "src/utils/removeNils"
 import { snakeCasePropsCompat } from "./snake-case-props-compat"
 import { AnySoupElement } from "@tscircuit/soup"
+import { createJSCADRenderer } from "jscad-fiber"
+import { jscadPlanner } from "jscad-planner"
 
 export type RootContainer = {}
 
@@ -64,7 +66,7 @@ export const hostConfig: HostConfig<
     } else if (typeof type === "string") {
       const instance: any = getBuilderForType(
         type,
-        rootContainer.project_builder
+        rootContainer.project_builder,
       )
 
       props = snakeCasePropsCompat(type, props)
@@ -84,10 +86,29 @@ export const hostConfig: HostConfig<
         footprint = fb
       }
 
+      // Convert cadModel into jscad-planner json
+      let cadModel = props.cadModel
+      if (isValidElement(cadModel)) {
+        // render cadModel to planner json
+        if (cadModel.type === "jscad" || cadModel.type === "cad") {
+          console.log("handling render")
+          const renderer = createJSCADRenderer(jscadPlanner as any)
+          const jscadElms: any[] = []
+          const root = renderer.createJSCADRoot(jscadElms)
+          root.render((cadModel as any).props.children)
+          cadModel = { jscad: jscadElms }
+        } else {
+          throw new Error(
+            `Unrecognized React component given as cadModel, must be "cad" or "jscad"`,
+          )
+        }
+      }
+
       if ("setProps" in instance) {
         const propsWithElms = removeNils({
           ...props,
           footprint,
+          cadModel,
         })
         ;(instance as any).setProps(propsWithElms)
         return instance
@@ -120,7 +141,7 @@ export const hostConfig: HostConfig<
       if (setSchPositionFn && (props.schX || props.schY)) {
         if (props.schX === undefined || props.schY === undefined) {
           throw new Error(
-            "if defining schX, must also define schY and vice versa"
+            "if defining schX, must also define schY and vice versa",
           )
         }
         ;(instance as any).setSchematicCenter(props.schX, props.schY)
@@ -137,7 +158,7 @@ export const hostConfig: HostConfig<
         if ("setSchematicCenter" in instance) {
           ;(instance as any).setSchematicCenter(
             schematic_properties.schematic_center.x,
-            schematic_properties.schematic_center.y
+            schematic_properties.schematic_center.y,
           )
         }
       }
@@ -145,7 +166,7 @@ export const hostConfig: HostConfig<
       if (schematic_properties.schematic_rotation) {
         if ("setSchematicRotation" in instance) {
           ;(instance as any).setSchematicRotation(
-            schematic_properties.schematic_rotation
+            schematic_properties.schematic_rotation,
           )
         }
       }
@@ -153,7 +174,7 @@ export const hostConfig: HostConfig<
       if ("footprint" in instance && (props.pcb_x || props.pcb_y)) {
         if (props.pcb_x === undefined || props.pcb_y === undefined) {
           throw new Error(
-            "if defining pcb_x, must also define pcb_y and vice versa"
+            "if defining pcb_x, must also define pcb_y and vice versa",
           )
         }
         ;(instance as any).footprint.setPosition(props.pcb_x, props.pcb_y)
@@ -162,7 +183,7 @@ export const hostConfig: HostConfig<
       if ("setSize" in instance && (props.width || props.height)) {
         if (props.width === undefined || props.height === undefined) {
           throw new Error(
-            "if defining width, must also define height and vice versa"
+            "if defining width, must also define height and vice versa",
           )
         }
         // ;(instance as any).setSize
@@ -196,7 +217,7 @@ export const hostConfig: HostConfig<
   appendChildToContainer(container: any, child) {
     if (!("appendChild" in container)) {
       throw new Error(
-        `Container "${container.builder_type}" does not support appending children`
+        `Container "${container.builder_type}" does not support appending children`,
       )
     }
     container.appendChild(child)
@@ -224,7 +245,7 @@ export const hostConfig: HostConfig<
   clearContainer(container) {
     if (!container.reset) {
       console.warn(
-        `CONTAINER IS MISSING RESET! Add to builder "${container.builder_type}"`
+        `CONTAINER IS MISSING RESET! Add to builder "${container.builder_type}"`,
       )
       return
     }
@@ -239,7 +260,7 @@ export const hostConfig: HostConfig<
   },
   scheduleTimeout: function (
     fn: (...args: unknown[]) => unknown,
-    delay?: number | undefined
+    delay?: number | undefined,
   ) {
     throw new Error("Function not implemented.")
   },
@@ -277,7 +298,7 @@ export const createRoot = () => {
     render(
       element: ReactNode,
       projectBuilder: ProjectBuilder & { _rootContainer?: RootContainer },
-      callback: null | (() => void) = null
+      callback: null | (() => void) = null,
     ) {
       const container = {}
       const reconciler = ReactReconciler(hostConfig)
@@ -293,17 +314,17 @@ export const createRoot = () => {
           (error: Error) => {
             console.error("got recoverable error from reconciler...", error)
           },
-          null
+          null,
         )
       }
       reconciler.updateContainer(
         element,
         projectBuilder._rootContainer,
         null,
-        callback
+        callback,
       )
       return projectBuilder.build(
-        projectBuilder.createBuildContext()
+        projectBuilder.createBuildContext(),
       ) as any as Promise<AnySoupElement[]>
     },
   }
