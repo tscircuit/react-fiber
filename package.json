@@ -19,7 +19,7 @@
     "@tscircuit/builder": "^1.5.136",
     "@tscircuit/layout": "^0.0.7",
     "@tscircuit/log-soup": "^1.0.2",
-    "@tscircuit/props": "^0.0.17",
+    "@tscircuit/props": "^0.0.33",
     "@types/node": "^20.14.10",
     "@types/react-reconciler": "^0.28.0",
     "async-mutex": "^0.5.0",

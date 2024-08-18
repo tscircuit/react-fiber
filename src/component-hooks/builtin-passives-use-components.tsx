@@ -30,3 +30,9 @@ export const useLed = createUseComponentWithZod(
   Props.ledProps,
   Props.ledPins
 )
+
+export const useSwitch = createUseComponentWithZod(
+  "switch",
+  Props.switchProps,
+  undefined as any
+)
